@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build output
+public/
+build/
+dist/
+
+# Cache and temp files
+.cache/
+.tmp/
+*.log
+*.lock
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test and coverage output
+coverage/
+artifacts/
+test-results/
+playwright-report/
+
+# WordPress specific
+wp-config.php
+.htaccess
+
+# Backup files
+*.bak
+*.backup
+
+# Package manager files
+package-lock.json
+composer.lock
+yarn.lock

@@ -1,0 +1,47 @@
+name: Performance Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * 1' # Weekly on Monday at 2 AM
+
+jobs:
+  performance:
+    name: Performance Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build assets
+      run: npm run build
+
+    - name: Start WordPress environment
+      run: npm run env:start
+
+    - name: Run performance tests
+      run: npm run test:performance
+
+    - name: Upload performance results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: performance-results
+        path: artifacts/
+
+    - name: Stop WordPress environment
+      if: always()
+      run: npm run env:stop

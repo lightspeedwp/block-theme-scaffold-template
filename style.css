@@ -1,0 +1,34 @@
+/*
+Theme Name: {{theme_name}}
+Theme URI: {{theme_uri}}
+Author: {{author}}
+Author URI: {{author_uri}}
+Description: {{description}}
+Version: {{version}}
+Requires at least: {{min_wp_version}}
+Tested up to: {{tested_wp_version}}
+Requires PHP: {{min_php_version}}
+License: {{license}}
+License URI: {{license_uri}}
+Text Domain: {{theme_slug}}
+Tags: {{theme_tags}}
+Network: false
+
+{{theme_name}} WordPress Theme, Copyright (C) {{year}} {{author}}
+{{theme_name}} is distributed under the terms of the {{license}}
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+*/
+
+/*
+ * Font smoothing.
+ * This is a noop, but it's needed to make the theme pass the theme review.
+ */
