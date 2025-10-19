@@ -33,7 +33,7 @@ class Test_Theme_Setup extends WP_UnitTestCase {
 	 */
 	public function test_theme_version_constant() {
 		$this->assertTrue( defined( '{{theme_slug|upper}}_VERSION' ) );
-		$this->assertNotEmpty( {{theme_slug|upper}}_VERSION );
+		$this->assertNotEmpty( constant( '{{theme_slug|upper}}_VERSION' ) );
 	}
 
 	/**
