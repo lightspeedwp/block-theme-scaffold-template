@@ -1,0 +1,81 @@
+{
+  "name": "{{theme_slug}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
+  "author": "{{author}}",
+  "license": "{{license}}",
+  "homepage": "{{theme_uri}}",
+  "repository": {
+    "type": "git",
+    "url": "{{theme_repo_url}}"
+  },
+  "bugs": {
+    "url": "{{theme_repo_url}}/issues"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "block-theme",
+    "full-site-editing",
+    "fse"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build",
+    "build:production": "NODE_ENV=production wp-scripts build",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:php",
+    "lint:js": "wp-scripts lint-js",
+    "lint:js:fix": "wp-scripts lint-js --fix",
+    "lint:css": "wp-scripts lint-style",
+    "lint:css:fix": "wp-scripts lint-style --fix",
+    "lint:php": "composer run lint",
+    "lint:php:fix": "composer run lint:fix",
+    "format": "wp-scripts format",
+    "test": "npm run test:js && npm run test:php",
+    "test:js": "wp-scripts test-unit-js",
+    "test:js:watch": "wp-scripts test-unit-js --watch",
+    "test:php": "composer run test",
+    "test:e2e": "wp-scripts test-e2e",
+    "test:e2e:debug": "wp-scripts test-e2e --config jest-e2e.config.js --debug",
+    "test:performance": "wp-scripts test-performance",
+    "packages-update": "wp-scripts packages-update",
+    "prepare": "husky install",
+    "env": "wp-env",
+    "env:start": "wp-env start",
+    "env:stop": "wp-env stop",
+    "env:destroy": "wp-env destroy"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^27.0.0",
+    "@wordpress/env": "^9.0.0",
+    "@wordpress/e2e-test-utils": "^10.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {},
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "wp-scripts lint-js --fix",
+      "wp-scripts format"
+    ],
+    "*.{css,scss,sass}": [
+      "wp-scripts lint-style --fix"
+    ],
+    "*.php": [
+      "composer run lint:fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

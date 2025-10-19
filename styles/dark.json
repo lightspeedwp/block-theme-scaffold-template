@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "title": "{{dark_mode_title}}",
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "{{dark_primary_color}}",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary", 
+          "color": "{{dark_secondary_color}}",
+          "name": "Secondary"
+        },
+        {
+          "slug": "background",
+          "color": "{{dark_background_color}}",
+          "name": "Background"
+        },
+        {
+          "slug": "foreground",
+          "color": "{{dark_text_color}}",
+          "name": "Foreground"
+        },
+        {
+          "slug": "accent",
+          "color": "{{dark_accent_color}}",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral",
+          "color": "{{dark_neutral_color}}",
+          "name": "Neutral"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--background)",
+      "text": "var(--wp--preset--color--foreground)"
+    }
+  }
+}
