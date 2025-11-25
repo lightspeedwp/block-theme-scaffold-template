@@ -1,8 +1,44 @@
-# {{theme_name}} Block Theme Instructions
+
+# Block Theme Scaffold: AI, Copilot, and Development Instructions
+
+## Overview & Related Files
+
+This repository is designed for advanced AI-assisted and Copilot-driven WordPress block theme development. All contributors and automation agents should follow these guidelines for maximum productivity, maintainability, and compliance with org standards.
+
+**Related Files:**
+
+- [Chat Modes](./chatmodes/chatmodes.md) — context-specific Copilot prompts
+- [Prompts](./prompts/prompts.md) — prompt templates for consistent output
+- [Main Agent Index](./agents/agent.md) — agent specs and usage
+- [AGENTS.md](/AGENTS.md) — org-wide AI rules and global principles
+- [Workflows](../workflows/) — CI/CD, performance, and deployment automation
+
+---
+
+## AI & Copilot Operations
+
+- Use Copilot for code generation, refactoring, and documentation, but always review and test generated code.
+- Reference `.github/agents/agent.md` for agent specs, triggers, and environment variables.
+- Use chat modes in `.github/chatmodes/` for context-specific Copilot prompts (e.g., block pattern authoring, theme.json editing, PHP/JS/SCSS best practices).
+- Use prompt templates in `.github/prompts/` for consistent, high-quality Copilot output.
+- Tag PRs with `ai-generated` if Copilot or an agent contributed code.
+- Prefer modular, reusable code and minimal dependencies.
+- Use mustache variables for all theme and block templates.
+- Validate all JSON (theme.json, block.json, etc.) with schema and semantic rules.
+- Document all custom blocks, patterns, and theme features in the README and/or docs/.
+- Use UK English and org style for all documentation and comments.
+- Agents should be kept in sync with repo tooling (linters, build, tests).
+- Use environment variables for agent runs (see agent.md for details).
+
+---
+
+## Example: {{theme_name}} Block Theme Instructions Template
+
+Use the following as a template for project-specific block theme instructions:
+
+---
 
 You are an expert WordPress block theme developer working on {{theme_name}}, a modern WordPress block theme with Full Site Editing (FSE) support.
-
-## Theme Overview
 
 - **Theme Name**: {{theme_name}}
 - **Theme Slug**: {{theme_slug}}
@@ -11,19 +47,9 @@ You are an expert WordPress block theme developer working on {{theme_name}}, a m
 - **Architecture**: WordPress Block Theme with FSE support
 - **Build System**: Webpack with @wordpress/scripts
 - **Template System**: Mustache templates for configuration
+- **Key Technologies**: WordPress Block Editor (Gutenberg), Full Site Editing (FSE), theme.json, block patterns, template parts, ES6+ JavaScript, SCSS, Webpack, PHPUnit, Jest
 
-## Key Technologies
-
-- WordPress Block Editor (Gutenberg)
-- Full Site Editing (FSE)
-- theme.json for global styles
-- Block patterns and template parts
-- Modern JavaScript (ES6+)
-- SCSS for styling
-- Webpack for asset compilation
-- PHPUnit and Jest for testing
-
-## File Structure
+**File Structure:**
 
 ```
 {{theme_slug}}/
@@ -45,9 +71,10 @@ You are an expert WordPress block theme developer working on {{theme_name}}, a m
 └── package.json        # Build configuration
 ```
 
-## Coding Standards
+## Coding Standards & Best Practices
 
 ### PHP
+
 - Follow WordPress Coding Standards
 - Use {{theme_slug}}_ prefix for all functions
 - Escape all output with esc_html(), esc_attr(), etc.
@@ -55,18 +82,21 @@ You are an expert WordPress block theme developer working on {{theme_name}}, a m
 - Use WordPress hooks and filters appropriately
 
 ### JavaScript
+
 - Use modern ES6+ syntax
 - Follow WordPress JavaScript standards
 - Use wp.domReady() for DOM manipulation
 - Utilize WordPress packages (@wordpress/*)
 
 ### CSS/SCSS
+
 - Use BEM methodology for custom classes
 - Leverage CSS custom properties from theme.json
 - Follow WordPress CSS standards
 - Mobile-first responsive design
 
 ### Block Templates
+
 - Use semantic HTML structure
 - Include proper block comments
 - Follow WordPress template hierarchy
@@ -74,31 +104,35 @@ You are an expert WordPress block theme developer working on {{theme_name}}, a m
 
 ## Development Guidelines
 
-### When Working with Block Patterns
-- Register patterns in inc/block-patterns.php
+### Block Patterns
+
+- Register patterns in `inc/block-patterns.php`
 - Use mustache variables for customizable content
 - Include proper categories and keywords
 - Test patterns in the Site Editor
 
-### When Working with Templates
-- Use HTML files in templates/ directory
+### Templates
+
+- Use HTML files in `templates/` directory
 - Include proper template parts
 - Follow WordPress template hierarchy
 - Test with different content types
 
-### When Working with Styles
-- Primary styles in theme.json
-- Additional styles in src/css/
+### Styles
+
+- Primary styles in `theme.json`
+- Additional styles in `src/css/`
 - Use CSS custom properties
 - Ensure cross-browser compatibility
 
-### When Working with JavaScript
-- Frontend scripts in src/js/theme.js
-- Editor scripts in src/js/editor.js
+### JavaScript
+
+- Frontend scripts in `src/js/theme.js`
+- Editor scripts in `src/js/editor.js`
 - Use WordPress dependencies
 - Ensure accessibility
 
-## Build Process
+## Build & Test Process
 
 - Development: `npm run start`
 - Production: `npm run build:production`
@@ -113,7 +147,7 @@ You are an expert WordPress block theme developer working on {{theme_name}}, a m
 - Test accessibility compliance
 - Verify across different browsers
 
-## Best Practices
+## General Best Practices
 
 1. **Performance**: Optimize images, minify assets, lazy load content
 2. **Accessibility**: Follow WCAG 2.1 AA guidelines
@@ -125,7 +159,8 @@ You are an expert WordPress block theme developer working on {{theme_name}}, a m
 
 Use these variables in templates and configuration files:
 
-### Theme Meta
+**Theme Meta**
+
 - `{{theme_name}}` - Display name
 - `{{theme_slug}}` - URL-safe identifier
 - `{{description}}` - Theme description
@@ -133,7 +168,8 @@ Use these variables in templates and configuration files:
 - `{{author}}` - Theme author
 - `{{license}}` - License type
 
-### Design Tokens
+**Design Tokens**
+
 - `{{primary_color}}` - Primary brand color
 - `{{secondary_color}}` - Secondary color
 - `{{background_color}}` - Background color
@@ -141,33 +177,38 @@ Use these variables in templates and configuration files:
 - `{{font_family}}` - Body font
 - `{{heading_font}}` - Heading font
 
-### Content
+**Content**
+
 - `{{hero_title}}` - Hero section title
 - `{{cta_text}}` - Call-to-action text
 - `{{footer_text}}` - Footer copyright text
 
 ## Common Tasks
 
-### Adding a New Block Pattern
-1. Create pattern in inc/block-patterns.php
+**Adding a New Block Pattern**
+
+1. Create pattern in `inc/block-patterns.php`
 2. Register with appropriate category
 3. Use mustache variables for content
 4. Test in Site Editor
 
-### Adding a New Template
-1. Create HTML file in templates/
+**Adding a New Template**
+
+1. Create HTML file in `templates/`
 2. Follow block markup syntax
 3. Include proper template parts
 4. Test with different content
 
-### Adding Custom Styles
-1. Add settings to theme.json
-2. Create styles in src/css/
+**Adding Custom Styles**
+
+1. Add settings to `theme.json`
+2. Create styles in `src/css/`
 3. Register block styles if needed
 4. Test responsive behavior
 
-### Adding JavaScript Functionality
-1. Add to src/js/theme.js or src/js/editor.js
+**Adding JavaScript Functionality**
+
+1. Add to `src/js/theme.js` or `src/js/editor.js`
 2. Use WordPress APIs and hooks
 3. Ensure accessibility
 4. Write tests
@@ -179,5 +220,7 @@ Use these variables in templates and configuration files:
 - Use WordPress debugging tools
 - Test with default content
 - Verify plugin compatibility
+
+---
 
 Remember to always test your changes thoroughly and follow WordPress best practices for theme development.

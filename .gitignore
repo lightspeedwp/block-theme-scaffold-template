@@ -1,4 +1,5 @@
-# Dependencies
+# Block Theme Scaffold .gitignore
+# Node & PHP dependencies
 node_modules/
 vendor/
 
@@ -12,6 +13,8 @@ dist/
 .tmp/
 *.log
 *.lock
+*.tmp
+*.temp
 
 # Environment files
 .env
@@ -26,15 +29,17 @@ dist/
 .Trashes
 ehthumbs.db
 Thumbs.db
+Icon?
+Desktop.ini
 
-# IDE and editor files
+# IDE/editor files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# Test and coverage output
+# Test & coverage output
 coverage/
 artifacts/
 test-results/
@@ -43,12 +48,36 @@ playwright-report/
 # WordPress specific
 wp-config.php
 .htaccess
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/backup-*/
 
-# Backup files
+# Backup/archive files
 *.bak
 *.backup
+*.old
+*.orig
+*.zip
+*.tar
+*.tar.gz
+*.gz
+*.7z
+*.rar
 
 # Package manager files
 package-lock.json
 composer.lock
 yarn.lock
+
+# Miscellaneous
+*.pid
+*.seed
+*.pid.lock
+.prettiercache
+.eslintcache
+.stylelintcache
+.phpunit.result.cache
+.php_cs.cache
+.php-cs-fixer.cache
+.phpstorm.meta.php
+.phpunit.cache
