@@ -34,6 +34,9 @@ This file documents the primary automation agent(s) for this repository, their p
 
 ## Example: Agent Spec Template (for new agents)
 
+
+> **Note:** The following is a template for documenting new agents. The files `agent-script.js` and `agent-workflow.yml` are placeholders and do not exist in this repository. Replace them with your actual agent script and workflow filenames when adding new agents.
+
 Use the following as a template for documenting new agents:
 
 ---
