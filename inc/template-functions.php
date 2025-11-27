@@ -21,58 +21,19 @@ function {{theme_slug}}_get_version() {
 }
 
 /**
- * Get theme customizer value.
- *
- * @param string $setting Setting name.
- * @param mixed  $default Default value.
- * @return mixed
- */
-function {{theme_slug}}_get_theme_mod( $setting, $default = null ) {
-	return get_theme_mod( '{{theme_slug}}_' . $setting, $default );
-}
-
-/**
- * Display footer text.
- */
-function {{theme_slug}}_footer_text() {
-	echo esc_html( {{theme_slug}}_get_theme_mod( 'footer_text', '{{default_footer_text}}' ) );
-}
-
-/**
- * Check if social links should be displayed.
- *
- * @return bool
- */
-function {{theme_slug}}_show_social_links() {
-	return {{theme_slug}}_get_theme_mod( 'show_social_links', true );
-}
-
-/**
- * Get header layout class.
- *
- * @return string
- */
-function {{theme_slug}}_get_header_layout_class() {
-	$layout = {{theme_slug}}_get_theme_mod( 'header_layout', 'default' );
-	return 'header-layout-' . $layout;
-}
-
-/**
  * Add body classes.
  *
  * @param array $classes Existing classes.
  * @return array
  */
 function {{theme_slug}}_body_classes( $classes ) {
-	// Add header layout class.
-	$classes[] = {{theme_slug}}_get_header_layout_class();
-	
+
 	// Add theme version class.
 	$classes[] = '{{theme_slug}}-version-' . str_replace( '.', '-', {{theme_slug}}_get_version() );
-	
+
 	// Add no-js class (removed by JavaScript).
 	$classes[] = 'no-js';
-	
+
 	return $classes;
 }
 add_filter( 'body_class', '{{theme_slug}}_body_classes' );

@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "title": "{{button_style_rounded_title}}",
+    "styles": {
+        "blocks": {
+            "core/button": {
+                "border": {
+                    "radius": "50px"
+                },
+                "typography": {
+                    "fontWeight": "500"
+                },
+                "spacing": {
+                    "padding": {
+                        "top": "0.75em",
+                        "right": "1.5em",
+                        "bottom": "0.75em",
+                        "left": "1.5em"
+                    }
+                }
+            }
+        }
+    }
+}

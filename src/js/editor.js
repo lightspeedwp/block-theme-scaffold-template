@@ -2,6 +2,8 @@
  * Editor JavaScript enhancements
  */
 
+import { __ } from '@wordpress/i18n';
+
 // Register custom block styles in the editor
 wp.domReady( function() {
 	// Unregister unwanted core block styles
@@ -12,8 +14,8 @@ wp.domReady( function() {
 	// Register custom block variations
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: '{{theme_slug}}-card',
-		title: '{{theme_name}} Card',
-		description: 'A styled card container',
+		title: __( '{{theme_name}} Card', '{{theme_slug}}' ),
+		description: __( 'A styled card container', '{{theme_slug}}' ),
 		category: 'design',
 		icon: 'admin-page',
 		attributes: {
@@ -33,15 +35,15 @@ wp.domReady( function() {
 
 	// Add custom formatting options
 	wp.richText.registerFormatType( '{{theme_slug}}/highlight', {
-		title: 'Highlight',
+		title: __( 'Highlight', '{{theme_slug}}' ),
 		tagName: 'mark',
 		className: 'highlight',
 		edit: function( { isActive, value, onChange } ) {
 			return wp.element.createElement(
 				wp.blockEditor.RichTextToolbarButton,
 				{
-					icon: 'admin-customizer',
-					title: 'Highlight',
+					icon: 'admin-appearance',
+					title: __( 'Highlight', '{{theme_slug}}' ),
 					onClick: function() {
 						onChange(
 							wp.richText.toggleFormat( value, {
@@ -63,7 +65,7 @@ const {{theme_slug|camelCase}}Editor = {
 	 */
 	addBlockClasses() {
 		const { addFilter } = wp.hooks;
-		
+
 		addFilter(
 			'blocks.getSaveContent.extraProps',
 			'{{theme_slug}}/add-block-classes',
@@ -83,14 +85,13 @@ const {{theme_slug|camelCase}}Editor = {
 		const { registerPlugin } = wp.plugins;
 		const { PluginSidebar, PluginSidebarMoreMenuItem } = wp.editPost;
 		const { PanelBody, TextControl } = wp.components;
-		const { __ } = wp.i18n;
 
 		const {{theme_slug|camelCase}}Sidebar = () => {
 			return wp.element.createElement(
 				PluginSidebar,
 				{
 					name: '{{theme_slug}}-sidebar',
-					title: '{{theme_name}} Settings',
+					title: __( '{{theme_name}} Settings', '{{theme_slug}}' ),
 					icon: 'admin-appearance'
 				},
 				wp.element.createElement(

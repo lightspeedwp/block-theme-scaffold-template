@@ -29,18 +29,21 @@ A modern WordPress block theme supporting Full Site Editing (FSE), built with mu
 ### Development Installation
 
 1. Clone this repository:
+
    ```bash
    git clone {{theme_repo_url}}
    cd {{theme_slug}}
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    composer install
    ```
 
 3. Build assets:
+
    ```bash
    npm run build
    ```
@@ -65,19 +68,55 @@ composer install
 npm run start
 ```
 
+### Build Process
+
+This theme uses `@wordpress/scripts` for a modern build workflow:
+
+- **Compilation**: Modern JavaScript (ESNext/JSX) → Browser-compatible code via Babel
+- **Bundling**: Multiple files combined into optimized bundles via webpack
+- **Sass Compilation**: `.scss` files compiled to standard CSS
+- **Code Minification**: JavaScript (Terser) and CSS (cssnano) optimization
+- **Code Linting**: ESLint for JavaScript, Stylelint for CSS
+- **Code Formatting**: Prettier for consistent styling
+
+**Documentation**:
+
+- 📖 [Build Process Guide](docs/BUILD-PROCESS.md) - Complete build documentation
+- 📖 [wp-scripts Configuration](docs/WP-SCRIPTS-CONFIGURATION.md) - Detailed setup guide
+- 📖 [Quick Reference](docs/WP-SCRIPTS-QUICK-REFERENCE.md) - Common tasks and commands
+- 📖 [Summary](docs/WP-SCRIPTS-SUMMARY.md) - Configuration summary
+
 ### Available Scripts
 
-- `npm run start` - Start development mode with hot reloading
-- `npm run build` - Build for production
-- `npm run build:production` - Build optimized for production
-- `npm run lint` - Run all linters
-- `npm run lint:js` - Lint JavaScript
-- `npm run lint:css` - Lint CSS
-- `npm run lint:php` - Lint PHP
-- `npm run test` - Run all tests
-- `npm run test:js` - Run JavaScript tests
-- `npm run test:php` - Run PHP tests
-- `npm run test:e2e` - Run end-to-end tests
+#### Build Commands
+
+- `npm run start` - Start development mode with hot reloading and watch mode
+- `npm run build` - Build optimized production assets
+- `npm run build:production` - Alternative production build
+
+#### Code Quality
+
+- `npm run lint` - Run all linters (JavaScript, CSS, PHP)
+- `npm run lint:js` - Lint JavaScript files
+- `npm run lint:js:fix` - Auto-fix JavaScript issues
+- `npm run lint:css` - Lint CSS/Sass files
+- `npm run lint:css:fix` - Auto-fix CSS issues
+- `npm run lint:php` - Lint PHP files
+- `npm run format` - Format all files with Prettier
+
+#### Testing
+
+- `npm run test` - Run all tests (JavaScript + PHP)
+- `npm run test:js` - Run JavaScript unit tests
+- `npm run test:js:watch` - Run Jest in watch mode
+- `npm run test:php` - Run PHP unit tests
+- `npm run test:e2e` - Run end-to-end tests with Playwright
+
+#### Internationalization
+
+- `npm run makepot` - Generate translation POT file
+- `npm run makejson` - Generate JSON translation files
+- `npm run i18n` - Complete i18n workflow (makepot + makejson)
 
 ### Theme Structure
 
@@ -124,6 +163,7 @@ This theme uses mustache templates for easy customization. Key variables include
 ### Customizing Colors and Typography
 
 Edit `theme.json` to customize:
+
 - Color palette
 - Typography settings
 - Spacing scale
@@ -158,6 +198,7 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 ## Support
 
 - Documentation: [Full documentation]({{docs_url}})
+- Internationalization: [i18n Guide](docs/INTERNATIONALIZATION.md)
 - Issues: [GitHub Issues]({{theme_repo_url}}/issues)
 - Community: [WordPress.org Support](https://wordpress.org/support/theme/{{theme_slug}})
 

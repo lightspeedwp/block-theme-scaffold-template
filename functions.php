@@ -20,6 +20,9 @@ define( '{{theme_slug|upper}}_VERSION', '{{version}}' );
  * Theme setup.
  */
 function {{theme_slug}}_setup() {
+	// Make theme available for translation.
+	load_theme_textdomain( '{{theme_slug}}', get_template_directory() . '/languages' );
+
 	// Add theme support for various features.
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'responsive-embeds' );
@@ -31,7 +34,7 @@ function {{theme_slug}}_setup() {
 	add_theme_support( 'custom-logo' );
 
 	// Add editor styles.
-	add_editor_style( 'public/css/editor.css' );
+	add_editor_style( 'build/css/editor-style.css' );
 
 	// Set content width.
 	$GLOBALS['content_width'] = apply_filters( '{{theme_slug}}_content_width', {{content_width_px}} );
@@ -43,27 +46,34 @@ add_action( 'after_setup_theme', '{{theme_slug}}_setup' );
  */
 function {{theme_slug}}_enqueue_assets() {
 	// Main stylesheet.
-	$asset_file = get_theme_file_path( 'public/css/style.asset.php' );
+	$asset_file = get_theme_file_path( 'build/css/style.asset.php' );
 	if ( file_exists( $asset_file ) ) {
 		$asset = include $asset_file;
 		wp_enqueue_style(
 			'{{theme_slug}}-style',
-			get_theme_file_uri( 'public/css/style.css' ),
+			get_theme_file_uri( 'build/css/style.css' ),
 			$asset['dependencies'] ?? array(),
 			$asset['version'] ?? {{theme_slug|upper}}_VERSION
 		);
 	}
 
 	// Main JavaScript.
-	$js_asset_file = get_theme_file_path( 'public/js/theme.asset.php' );
+	$js_asset_file = get_theme_file_path( 'build/js/theme.asset.php' );
 	if ( file_exists( $js_asset_file ) ) {
 		$js_asset = include $js_asset_file;
 		wp_enqueue_script(
 			'{{theme_slug}}-script',
-			get_theme_file_uri( 'public/js/theme.js' ),
+			get_theme_file_uri( 'build/js/theme.js' ),
 			$js_asset['dependencies'] ?? array(),
 			$js_asset['version'] ?? {{theme_slug|upper}}_VERSION,
 			true
+		);
+
+		// Set script translations.
+		wp_set_script_translations(
+			'{{theme_slug}}-script',
+			'{{theme_slug}}',
+			get_theme_file_path( 'languages' )
 		);
 	}
 }
@@ -73,14 +83,34 @@ add_action( 'wp_enqueue_scripts', '{{theme_slug}}_enqueue_assets' );
  * Enqueue editor assets.
  */
 function {{theme_slug}}_enqueue_editor_assets() {
-	$editor_asset_file = get_theme_file_path( 'public/css/editor.asset.php' );
+	$editor_asset_file = get_theme_file_path( 'build/css/editor-style.asset.php' );
 	if ( file_exists( $editor_asset_file ) ) {
 		$editor_asset = include $editor_asset_file;
 		wp_enqueue_style(
 			'{{theme_slug}}-editor-style',
-			get_theme_file_uri( 'public/css/editor.css' ),
+			get_theme_file_uri( 'build/css/editor-style.css' ),
 			$editor_asset['dependencies'] ?? array(),
 			$editor_asset['version'] ?? {{theme_slug|upper}}_VERSION
+		);
+	}
+
+	// Enqueue editor JavaScript.
+	$editor_js_asset_file = get_theme_file_path( 'build/js/editor.asset.php' );
+	if ( file_exists( $editor_js_asset_file ) ) {
+		$editor_js_asset = include $editor_js_asset_file;
+		wp_enqueue_script(
+			'{{theme_slug}}-editor-script',
+			get_theme_file_uri( 'build/js/editor.js' ),
+			$editor_js_asset['dependencies'] ?? array(),
+			$editor_js_asset['version'] ?? {{theme_slug|upper}}_VERSION,
+			true
+		);
+
+		// Set script translations for editor.
+		wp_set_script_translations(
+			'{{theme_slug}}-editor-script',
+			'{{theme_slug}}',
+			get_theme_file_path( 'languages' )
 		);
 	}
 }
@@ -111,7 +141,6 @@ add_action( 'init', '{{theme_slug}}_register_pattern_categories' );
 $theme_includes = array(
 	'inc/block-patterns.php',
 	'inc/block-styles.php',
-	'inc/customizer.php',
 	'inc/template-functions.php',
 );
 

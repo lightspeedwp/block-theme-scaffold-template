@@ -12,6 +12,29 @@ The `bin/` directory contains utility scripts for:
 - Initializing a development environment
 - Running checks and tests
 
+### Theme Generation Flow
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e4d78', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#15354f', 'lineColor': '#333333', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#e8e8e8', 'background': '#ffffff', 'mainBkg': '#1e4d78', 'textColor': '#333333', 'nodeBorder': '#15354f', 'clusterBkg': '#f8f9fa', 'clusterBorder': '#dee2e6', 'titleColor': '#333333'}}}%%
+flowchart LR
+    subgraph Scaffold["Scaffold Template"]
+        Template["Template Files<br/>with mustache placeholders"]
+    end
+
+    subgraph Generate["Generation Script"]
+        Script["generate-theme.js"]
+        Values["User Values<br/>--slug, --name, etc."]
+    end
+
+    subgraph Output["Generated Theme"]
+        Theme["Complete Theme<br/>Ready to develop"]
+    end
+
+    Template --> Script
+    Values --> Script
+    Script --> Theme
+```
+
 ## Scripts
 
 ### 1. `generate-theme.js`
@@ -75,6 +98,23 @@ bin/install-wp-tests.sh <db-name> <db-user> <db-pass> [db-host] [wp-version] [sk
 - Downloads and configures the WordPress test suite for PHP unit testing.
 
 ## Workflow Example
+
+### Complete Development Workflow
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e4d78', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#15354f', 'lineColor': '#333333', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#e8e8e8', 'background': '#ffffff', 'mainBkg': '#1e4d78', 'textColor': '#333333', 'nodeBorder': '#15354f', 'clusterBkg': '#f8f9fa', 'clusterBorder': '#dee2e6', 'titleColor': '#333333'}}}%%
+flowchart TD
+    A["1. Generate Theme"] --> B["2. Install Dependencies"]
+    B --> C["3. Start Development"]
+    C --> D{"Make Changes"}
+    D --> E["4. Lint & Format"]
+    E --> F["5. Run Tests"]
+    F --> G{"Tests Pass?"}
+    G -->|No| D
+    G -->|Yes| H["6. Build for Production"]
+    H --> I["7. Create Distribution ZIP"]
+    I --> J["8. Deploy"]
+```
 
 1. Generate a new theme:
 

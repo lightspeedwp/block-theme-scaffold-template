@@ -25,7 +25,7 @@
 - Integrate Playwright into CI/CD.
 
 ## WordPress Theme Testing
-- Cover block registration, rendering, customizer options, frontend/backend appearance, accessibility, device compatibility.
+- Cover block registration, rendering, pattern functionality, frontend/backend appearance, accessibility, device compatibility.
 - Reference: [Theme Testing](https://developer.wordpress.org/themes/releasing-your-theme/testing/)
 
 ## Related Instructions

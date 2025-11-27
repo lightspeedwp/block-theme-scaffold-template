@@ -105,7 +105,7 @@ I'm your WordPress block theme development assistant for **{{theme_name}}**. I c
 
 - `{{theme_slug}}_setup` — Theme setup
 - `{{theme_slug}}_enqueue_assets` — Asset loading
-- `{{theme_slug}}_customize_register` — Customizer options
+- `{{theme_slug}}_register_pattern_categories` — Block pattern categories
 
 ---
 

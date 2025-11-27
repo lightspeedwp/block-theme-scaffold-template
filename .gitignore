@@ -8,6 +8,10 @@ public/
 build/
 dist/
 
+# Translation files (keep .pot, ignore compiled)
+languages/*.mo
+!languages/.gitkeep
+
 # Cache and temp files
 .cache/
 .tmp/

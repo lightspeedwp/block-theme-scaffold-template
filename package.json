@@ -32,7 +32,11 @@
   "scripts": {
     "start": "wp-scripts start",
     "build": "wp-scripts build",
-    "build:production": "NODE_ENV=production wp-scripts build",
+    "build:production": "NODE_ENV=production npm run build",
+    "makepot": "wp i18n make-pot . languages/{{theme_slug}}.pot --slug={{theme_slug}} --domain={{theme_slug}} --exclude=node_modules,vendor,build,tests",
+    "makepot:php": "wp i18n make-pot . languages/{{theme_slug}}.pot --slug={{theme_slug}} --domain={{theme_slug}} --exclude=node_modules,vendor,build,tests,src",
+    "makejson": "wp i18n make-json languages --no-purge",
+    "i18n": "npm run makepot && npm run makejson",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:php",
     "lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
@@ -40,6 +44,7 @@
     "lint:css:fix": "wp-scripts lint-style --fix",
     "lint:php": "composer run lint",
     "lint:php:fix": "composer run lint:fix",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
     "format": "wp-scripts format",
     "test": "npm run test:js && npm run test:php",
     "test:js": "wp-scripts test-unit-js",
@@ -69,7 +74,8 @@
     "@wordpress/scripts": "^31.0.0",
     "@wordpress/stylelint-config": "^23.27.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7"
+    "lint-staged": "^16.2.7",
+    "webpack-remove-empty-scripts": "^1.0.4"
   },
   "dependencies": {
     "@wordpress/a11y": "^4.35.0",
