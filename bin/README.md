@@ -71,11 +71,17 @@ node bin/build.js init
 # Build assets for production
 node bin/build.js build
 
+# Build with stats for bundle analyzer
+node bin/build.js build --stats
+
 # Create distribution ZIP
 node bin/build.js dist
 
 # Run all checks (lint, test)
 node bin/build.js check
+
+# Run performance checks
+node bin/build.js performance
 ```
 
 ### `install-wp-tests.sh`

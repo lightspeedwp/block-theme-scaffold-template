@@ -33,6 +33,40 @@ flowchart TB
 
 ## Files
 
+### `nonce.php`
+
+Provides secure nonce utilities for AJAX and form handling.
+
+**Class:** `LSWP_Theme_Nonce`
+
+**Usage:**
+
+```php
+$nonce = new LSWP_Theme_Nonce( 'my-action' );
+$nonce_value = $nonce->create_nonce();
+
+// Verify in AJAX handler
+if ( ! $nonce->verify_ajax() ) {
+    wp_send_json_error( 'Security check failed' );
+}
+```
+
+### `deprecation.php`
+
+Standard deprecation workflow for theme functions and hooks.
+
+**Class:** `LSWP_Theme_Deprecation`
+
+**Usage:**
+
+```php
+LSWP_Theme_Deprecation::deprecated_function(
+    'old_function',
+    '2.0.0',
+    'new_function'
+);
+```
+
 ### `block-patterns.php`
 
 Registers custom block patterns for the theme.

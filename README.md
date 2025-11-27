@@ -177,11 +177,41 @@ Edit `theme.json` to customize:
 
 ## Testing
 
-- **JavaScript**: Jest unit tests
+- **JavaScript**: Jest unit tests with coverage
 - **PHP**: PHPUnit tests with WordPress testing framework
 - **End-to-End**: Playwright tests
-- **Accessibility**: Automated a11y testing
-- **Performance**: Core Web Vitals monitoring
+- **Accessibility**: Automated a11y testing with axe-core
+- **Performance**: Lighthouse CI and Core Web Vitals monitoring
+- **Coverage**: Codecov integration with quality gates
+
+## Docker Development
+
+This scaffold includes a complete Docker-based development environment:
+
+1. **Open in VS Code** with the Dev Containers extension
+2. **Reopen in Container** when prompted
+3. **Services included:**
+   - WordPress (port 8080)
+   - MariaDB (port 3306)
+   - phpMyAdmin (port 8081)
+   - MailHog (port 8025)
+
+```bash
+# Or manually start the environment
+cd .devcontainer && docker-compose up -d
+```
+
+## CI/CD Pipeline
+
+Automated workflows handle:
+
+- **Linting & Testing** - On every push/PR
+- **Security Audits** - Dependency vulnerability checks
+- **E2E Tests** - Playwright browser testing
+- **Code Coverage** - JavaScript & PHP coverage with Codecov
+- **Bundle Analysis** - Size tracking and quality gates
+- **Releases** - Automated version bumping and changelog
+- **WordPress.org Deploy** - Theme directory deployment on release
 
 ## Contributing
 

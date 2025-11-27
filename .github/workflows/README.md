@@ -4,9 +4,14 @@ This directory contains GitHub Actions workflow definitions for CI/CD automation
 
 ## Workflows
 
-- **agent-workflow.yml** - AI agent automation workflow
-- **block-theme-build-and-e2e.yml** - Build and end-to-end testing workflow
-- Additional workflows for testing, linting, and deployment
+| Workflow | Description |
+|----------|-------------|
+| **agent-workflow.yml** | AI agent automation workflow for GitHub Copilot |
+| **block-theme-build-and-e2e.yml** | Build and end-to-end testing workflow |
+| **ci-cd.yml** | Continuous integration and deployment workflow |
+| **code-quality.yml** | Code coverage, bundle analysis, and quality metrics |
+| **deploy-wporg.yml** | WordPress.org theme directory deployment |
+| **release.yml** | Automated release management and changelog generation |
 
 ## Purpose
 
@@ -15,16 +20,62 @@ These workflows automate:
 - Building theme assets on push/PR
 - Running automated tests (unit, integration, E2E)
 - Code quality checks (linting, formatting)
-- Version management and releases
+- Code coverage collection and reporting (Codecov)
+- Bundle size analysis and tracking
+- Theme version management and releases
+- WordPress.org theme directory deployment
+
+## Workflow Details
+
+### ci-cd.yml
+
+Main CI/CD pipeline running on every push and PR:
+
+- PHP/JS linting and formatting
+- Unit tests (PHPUnit, Jest)
+- E2E tests (Playwright)
+- Theme validation
+
+### code-quality.yml
+
+Code quality metrics and analysis:
+
+- Test coverage with Codecov integration
+- Bundle size analysis with size limits
+- Lint result summaries
+
+### deploy-wporg.yml
+
+WordPress.org theme directory deployment:
+
+- Triggered on GitHub releases
+- SVN sync to WordPress.org
+- Asset and screenshot updates
+
+### release.yml
+
+Automated release management:
+
+- Semantic versioning
+- Changelog generation
+- GitHub release creation
 
 ## Triggers
 
-Workflows typically run on:
+| Trigger | Workflows |
+|---------|-----------|
+| Push to main/develop | ci-cd.yml, code-quality.yml |
+| Pull request | ci-cd.yml, code-quality.yml |
+| Release published | deploy-wporg.yml |
+| Manual dispatch | release.yml, agent-workflow.yml |
 
-- Push to main/develop branches
-- Pull request creation/updates
-- Manual workflow dispatch
-- Scheduled intervals (for maintenance tasks)
+## Configuration
+
+Required repository secrets:
+
+- `CODECOV_TOKEN` - Codecov upload token
+- `SVN_USERNAME` - WordPress.org SVN username
+- `SVN_PASSWORD` - WordPress.org SVN password
 
 ## Usage
 

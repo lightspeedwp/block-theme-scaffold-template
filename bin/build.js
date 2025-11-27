@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Build and deployment utility script
+ * Build and deployment utility script with enhanced error handling
  */
 
 const fs = require('fs');
@@ -11,14 +11,31 @@ const { execSync } = require('child_process');
 const THEME_DIR = path.resolve(__dirname, '..');
 const PACKAGE_JSON = path.join(THEME_DIR, 'package.json');
 
+// Color codes
+const colors = {
+	reset: '\x1b[0m',
+	red: '\x1b[31m',
+	green: '\x1b[32m',
+	yellow: '\x1b[33m',
+	cyan: '\x1b[36m'
+};
+
+function log(message, color = 'reset') {
+	console.log(`${colors[color]}${message}${colors.reset}`);
+}
+
 /**
  * Get package.json data
  */
 function getPackageData() {
 	try {
+		if (!fs.existsSync(PACKAGE_JSON)) {
+			log('❌ package.json not found', 'red');
+			process.exit(1);
+		}
 		return JSON.parse(fs.readFileSync(PACKAGE_JSON, 'utf8'));
 	} catch (error) {
-		console.error('Error reading package.json:', error.message);
+		log(`❌ Error reading package.json: ${error.message}`, 'red');
 		process.exit(1);
 	}
 }
@@ -28,15 +45,49 @@ function getPackageData() {
  */
 function runCommand(command, options = {}) {
 	try {
-		console.log(`Running: ${command}`);
+		log(`▶ Running: ${command}`, 'cyan');
 		return execSync(command, {
 			stdio: 'inherit',
 			cwd: THEME_DIR,
 			...options
 		});
 	} catch (error) {
-		console.error(`Command failed: ${command}`);
+		log(`❌ Command failed: ${command}`, 'red');
+		if (options.optional) {
+			log(`⚠️  Continuing despite error...`, 'yellow');
+			return null;
+		}
 		process.exit(1);
+	}
+}
+
+/**
+ * Check prerequisites
+ */
+function checkPrerequisites() {
+	log('🔍 Checking prerequisites...', 'cyan');
+
+	// Check Node.js version
+	const nodeVersion = process.version;
+	const major = parseInt(nodeVersion.slice(1).split('.')[0]);
+	if (major < 18) {
+		log(`❌ Node.js 18.x or higher required. Current: ${nodeVersion}`, 'red');
+		process.exit(1);
+	}
+	log(`✅ Node.js ${nodeVersion}`, 'green');
+
+	// Check npm
+	try {
+		execSync('npm --version', { stdio: 'pipe' });
+		log('✅ npm detected', 'green');
+	} catch {
+		log('❌ npm not found', 'red');
+		process.exit(1);
+	}
+
+	// Check for node_modules
+	if (!fs.existsSync(path.join(THEME_DIR, 'node_modules'))) {
+		log('⚠️  node_modules not found. Run: npm install', 'yellow');
 	}
 }
 
@@ -44,22 +95,37 @@ function runCommand(command, options = {}) {
  * Build theme for production
  */
 function buildProduction() {
-	console.log('Building theme for production...');
+	const startTime = Date.now();
+	log('🔨 Building theme for production...', 'cyan');
+
+	checkPrerequisites();
 
 	// Clean previous build
-	runCommand('rm -rf public/*');
+	const buildDir = path.join(THEME_DIR, 'build');
+	if (fs.existsSync(buildDir)) {
+		log('🧹 Cleaning previous build...', 'cyan');
+		fs.rmSync(buildDir, { recursive: true, force: true });
+	}
 
 	// Build assets
 	runCommand('npm run build:production');
 
-	// Optimize images (if imagemin is available)
-	try {
-		runCommand('npx imagemin assets/images/* --out-dir=public/images');
-	} catch (error) {
-		console.log('Image optimization skipped (imagemin not available)');
+	// Verify build output
+	if (!fs.existsSync(buildDir) || fs.readdirSync(buildDir).length === 0) {
+		log('⚠️  Build directory empty or missing', 'yellow');
+	} else {
+		log('✅ Build assets generated', 'green');
 	}
 
-	console.log('Production build complete!');
+	// Optimize images (optional)
+	const imagesDir = path.join(THEME_DIR, 'assets', 'images');
+	if (fs.existsSync(imagesDir)) {
+		log('🖼️  Optimizing images...', 'cyan');
+		runCommand('npx imagemin assets/images/* --out-dir=build/images', { optional: true });
+	}
+
+	const duration = ((Date.now() - startTime) / 1000).toFixed(2);
+	log(`✅ Production build complete in ${duration}s`, 'green');
 }
 
 /**

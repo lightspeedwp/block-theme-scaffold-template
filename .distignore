@@ -7,9 +7,20 @@ src/
 tests/
 coverage/
 artifacts/
+test-results/
+playwright-report/
 *.log
 *.lock
 .DS_Store
+
+# Performance monitoring
+lighthouse-reports/
+.lighthouserc.js
+.size-limit.json
+webpack-stats.json
+stats.json
+
+# Other system files
 Thumbs.db
 .env
 .env.*
