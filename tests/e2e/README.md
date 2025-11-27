@@ -36,6 +36,7 @@ flowchart TB
 End-to-end tests for theme functionality.
 
 **Tests:**
+
 - Page loading and rendering
 - Navigation functionality
 - Block interactions
@@ -46,6 +47,7 @@ End-to-end tests for theme functionality.
 Example test demonstrating Playwright patterns.
 
 **Demonstrates:**
+
 - Page navigation
 - Element selection
 - User interactions
@@ -91,16 +93,16 @@ test('homepage loads correctly', async ({ page }) => {
 ```javascript
 test('navigation menu works', async ({ page }) => {
     await page.goto('/');
-    
+
     // Click menu button
     await page.click('.menu-toggle');
-    
+
     // Verify menu is visible
     await expect(page.locator('.nav-menu')).toBeVisible();
-    
+
     // Click menu item
     await page.click('a[href="/about"]');
-    
+
     // Verify navigation
     await expect(page).toHaveURL(/\/about/);
 });
@@ -111,11 +113,11 @@ test('navigation menu works', async ({ page }) => {
 ```javascript
 test('search form works', async ({ page }) => {
     await page.goto('/');
-    
+
     // Fill search form
     await page.fill('[name="s"]', 'test query');
     await page.click('[type="submit"]');
-    
+
     // Verify results page
     await expect(page).toHaveURL(/\?s=test\+query/);
     await expect(page.locator('.search-results')).toBeVisible();
@@ -127,10 +129,10 @@ test('search form works', async ({ page }) => {
 ```javascript
 test('visual regression', async ({ page }) => {
     await page.goto('/');
-    
+
     // Take screenshot
     await page.screenshot({ path: 'screenshots/homepage.png' });
-    
+
     // Screenshot specific element
     const header = page.locator('header');
     await header.screenshot({ path: 'screenshots/header.png' });

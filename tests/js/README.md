@@ -28,6 +28,7 @@ flowchart LR
 Tests for frontend theme JavaScript.
 
 **Coverage:**
+
 - DOM manipulation
 - Event handlers
 - Utility functions
@@ -38,6 +39,7 @@ Tests for frontend theme JavaScript.
 Example test file demonstrating testing patterns.
 
 **Demonstrates:**
+
 - Jest syntax
 - Test structure
 - Assertions

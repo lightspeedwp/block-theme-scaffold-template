@@ -28,6 +28,7 @@ flowchart LR
 Tests for the build orchestration script.
 
 **What it tests:**
+
 - Build initialization
 - Asset compilation
 - Distribution package creation
@@ -38,6 +39,7 @@ Tests for the build orchestration script.
 Tests for the theme generation script.
 
 **What it tests:**
+
 - Theme scaffold creation
 - Placeholder replacement
 - File copying

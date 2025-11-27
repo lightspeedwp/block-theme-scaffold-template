@@ -53,11 +53,13 @@ tests/
 PHP unit tests for theme functions and classes.
 
 **Run:**
+
 ```bash
 npm run test:php
 ```
 
 **Files:**
+
 - `test-theme-setup.php`
 - `test-block-patterns.php`
 - `test-block-styles.php`
@@ -68,12 +70,14 @@ npm run test:php
 JavaScript unit tests for theme scripts.
 
 **Run:**
+
 ```bash
 npm run test:js
 npm run test:js:watch  # Watch mode
 ```
 
 **Files:**
+
 - `tests/js/*.test.js`
 - `tests/bin/*.test.js`
 
@@ -82,11 +86,13 @@ npm run test:js:watch  # Watch mode
 End-to-end browser tests.
 
 **Run:**
+
 ```bash
 npm run test:e2e
 ```
 
 **Files:**
+
 - `tests/e2e/*.spec.js`
 
 ## Test Flow
