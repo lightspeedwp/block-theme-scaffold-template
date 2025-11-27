@@ -15,6 +15,7 @@ Thumbs.db
 .env.*
 *.md
 !README.md
+!README.txt
 !CHANGELOG.md
 package.json
 package-lock.json
