@@ -98,6 +98,7 @@ flowchart TD
 | Template | Purpose | Pattern Used | Fallback |
 |----------|---------|--------------|----------|
 | `home.html` | Blog posts page | `query-posts-grid` | `index.html` |
+| `home-sidebar.html` | Blog with sidebar | `query-posts-list`, `sidebar` | `home.html` |
 | `author.html` | Author archive | `author-header`, `query-posts-grid` | `archive.html` |
 | `category.html` | Category archive | `archive-header`, `query-posts-list` | `archive.html` |
 | `tag.html` | Tag archive | `archive-header`, `query-posts-grid` | `archive.html` |

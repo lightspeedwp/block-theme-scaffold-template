@@ -307,6 +307,13 @@
       "postTypes": [
         "page"
       ]
+    },
+    {
+      "name": "home-sidebar",
+      "title": "Blog (with Sidebar)",
+      "postTypes": [
+        "page"
+      ]
     }
   ],
   "templateParts": [
@@ -319,6 +326,11 @@
       "name": "footer",
       "title": "Footer",
       "area": "footer"
+    },
+    {
+      "name": "sidebar",
+      "title": "Sidebar",
+      "area": "sidebar"
     },
     {
       "name": "post-meta",

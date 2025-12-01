@@ -113,6 +113,40 @@ Query pagination for post lists.
 
 **Block Types:** `core/query`
 
+### `sidebar.html`
+
+Blog sidebar with widgets (search, recent posts, categories, tags, archives).
+
+**Pattern Reference:**
+
+```html
+<!-- wp:pattern {"slug":"{{theme_slug}}/sidebar"} /-->
+```
+
+**Pattern Location:** `patterns/sidebar.php`
+
+**Block Types:** `core/template-part/sidebar`
+
+**Usage in templates:**
+
+```html
+<!-- wp:template-part {"slug":"sidebar"} /-->
+```
+
+### `comments.html`
+
+Comments section for posts.
+
+**Pattern Reference:**
+
+```html
+<!-- wp:pattern {"slug":"{{theme_slug}}/comments"} /-->
+```
+
+**Pattern Location:** `patterns/comments.php`
+
+**Block Types:** `core/comments`
+
 ## Template Part Areas
 
 Template parts are registered in `theme.json`:
@@ -131,6 +165,11 @@ Template parts are registered in `theme.json`:
       "area": "footer"
     },
     {
+      "name": "sidebar",
+      "title": "Sidebar",
+      "area": "sidebar"
+    },
+    {
       "name": "post-meta",
       "title": "Post Meta",
       "area": "uncategorized"
@@ -138,6 +177,11 @@ Template parts are registered in `theme.json`:
     {
       "name": "pagination",
       "title": "Pagination",
+      "area": "uncategorized"
+    },
+    {
+      "name": "comments",
+      "title": "Comments",
       "area": "uncategorized"
     }
   ]
@@ -152,20 +196,25 @@ flowchart LR
     subgraph Areas["Template Part Areas"]
         HeaderArea["header<br/>Site Header"]
         FooterArea["footer<br/>Site Footer"]
+        SidebarArea["sidebar<br/>Sidebar"]
         Uncategorized["uncategorized<br/>General Parts"]
     end
 
     subgraph Parts["Parts"]
         H["header.html"]
         F["footer.html"]
+        S["sidebar.html"]
         PM["post-meta.html"]
         PG["pagination.html"]
+        C["comments.html"]
     end
 
     H --> HeaderArea
     F --> FooterArea
+    S --> SidebarArea
     PM --> Uncategorized
     PG --> Uncategorized
+    C --> Uncategorized
 ```
 
 ## Why Pattern References?

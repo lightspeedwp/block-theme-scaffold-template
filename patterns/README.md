@@ -94,6 +94,12 @@ flowchart TB
 | Post Meta | `post-meta.php` | Post metadata (author, date, categories, tags) |
 | Pagination | `pagination.php` | Query pagination with Previous/Next links |
 
+### Widget Patterns
+
+| Pattern | File | Block Types | Description |
+|---------|------|-------------|-------------|
+| Sidebar | `sidebar.php` | `core/template-part/sidebar` | Sidebar with search, recent posts, categories, tags, and archives |
+
 ## Pattern Structure
 
 Each pattern file uses PHP with WordPress block markup. All patterns include:
@@ -171,6 +177,7 @@ Block Types allow patterns to be suggested as replacements for specific blocks:
 |------------|---------|-----------------|
 | `core/template-part/header` | Suggested for header template parts | `header.php` |
 | `core/template-part/footer` | Suggested for footer template parts | `footer.php` |
+| `core/template-part/sidebar` | Suggested for sidebar template parts | `sidebar.php` |
 | `core/query` | Suggested for query blocks | `query-posts-list.php`, `query-posts-grid.php` |
 
 ## Template Types
