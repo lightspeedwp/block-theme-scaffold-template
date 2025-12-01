@@ -1,5 +1,12 @@
+---
+title: Custom AI Instructions
+description: Custom instructions for AI assistants and Copilot
+category: Documentation
+type: Guide
+audience: AI Assistants, Developers
+date: 2025-12-01
+---
 
-# Block Theme Scaffold: AI, Copilot, and Development Instructions
 
 ## Overview & Related Files
 

@@ -1,3 +1,12 @@
+---
+title: GitHub Configuration
+description: GitHub-specific configuration and workflow files
+category: Project
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # GitHub Configuration
 
 This directory contains GitHub-specific configuration files for the {{theme_name}} theme.

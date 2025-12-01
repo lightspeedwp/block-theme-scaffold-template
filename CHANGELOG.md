@@ -1,3 +1,12 @@
+---
+title: Changelog
+description: Release history and version changes
+category: Project
+type: Reference
+audience: Users, Developers
+date: 2025-12-01
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Initial theme scaffold with mustache templates
 - Full Site Editing support
 - Block patterns and template parts
@@ -19,24 +29,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Security headers and best practices
 
 ### Changed
+
 - N/A
 
 ### Deprecated
+
 - N/A
 
 ### Removed
+
 - N/A
 
 ### Fixed
+
 - N/A
 
 ### Security
+
 - Added security headers
 - Implemented proper escaping and sanitization
 
 ## [{{version}}] - {{release_date}}
 
 ### Added
+
 - Initial release
 - WordPress {{min_wp_version}}+ support
 - Block theme architecture

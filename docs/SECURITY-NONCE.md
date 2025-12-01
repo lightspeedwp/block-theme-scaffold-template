@@ -1,4 +1,11 @@
-# Nonce Verification for Block Themes
+---
+title: Nonce Verification Utilities
+description: Nonce utilities for WordPress security and request validation
+category: Development
+type: Reference
+audience: Developers
+date: 2025-12-01
+---
 
 Block themes primarily use declarative HTML templates, but nonces remain essential for:
 

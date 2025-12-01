@@ -1,3 +1,12 @@
+---
+title: Styles
+description: Theme styles and CSS
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # Style Variations
 
 This directory contains global style variations and block-specific style overrides for the theme.

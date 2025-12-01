@@ -1,3 +1,12 @@
+---
+title: Block Theme Build Agent Spec
+description: Specification for the build, lint, and test automation agent for block themes
+category: Agent
+type: Agent Specification
+audience: Developers, AI Agents
+date: 2025-12-01
+---
+
 # Block Theme Build Agent Spec
 
 This document defines the specification for the `block-theme-build.agent.js` automation agent, responsible for managing the build, lint, and test lifecycle of a WordPress block theme. It is tightly integrated with the repository's workflows and follows best practices from the official WordPress theme build process documentation.

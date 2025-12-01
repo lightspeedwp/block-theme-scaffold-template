@@ -1,3 +1,12 @@
+---
+title: Block Patterns
+description: WordPress block patterns
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # Block Patterns
 
 This directory contains PHP-based block patterns for the theme. All patterns use proper internationalization, accessibility attributes, and WordPress block pattern registration headers.

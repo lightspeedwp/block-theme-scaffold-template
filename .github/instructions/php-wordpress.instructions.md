@@ -1,3 +1,12 @@
+---
+title: PHP & WordPress Instructions
+description: Standards for PHP and WordPress development
+category: Project
+type: Guide
+audience: Developers
+date: 2025-12-01
+---
+
 # PHP Development Guidelines for WordPress
 
 ## File Structure & Organization

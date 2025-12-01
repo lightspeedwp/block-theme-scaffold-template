@@ -1,4 +1,11 @@
-# Tool Configuration Overview
+---
+title: Tool Configuration Overview
+description: Overview and configuration guide for all development tools
+category: Development
+type: Reference
+audience: Developers
+date: 2025-12-01
+---
 
 This document provides an overview of all the tools used in the {{theme_name}} block theme scaffold, why we use them, and where to find detailed documentation for each.
 

@@ -1,4 +1,11 @@
-# Security Headers for Block Themes
+---
+title: Security Headers Guide
+description: Implementing security headers for WordPress block themes
+category: Development
+type: Guide
+audience: Developers
+date: 2025-12-01
+---
 
 Block themes should implement the same security headers as plugins. Prefer server configuration for performance; use WordPress-level headers when server config is unavailable.
 

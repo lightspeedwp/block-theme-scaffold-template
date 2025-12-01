@@ -1,4 +1,11 @@
-# Internationalization (i18n)
+---
+title: Internationalization (i18n)
+description: Guide for translating and localizing the theme
+category: Development
+type: Guide
+audience: Developers, Translators
+date: 2025-12-01
+---
 
 This theme is fully internationalized and ready for translation into any language.
 

@@ -1,3 +1,12 @@
+---
+title: Tests
+description: Test files and test configuration
+category: Testing
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # Build Script Tests
 
 This directory contains tests for the build and generation scripts.

@@ -1,4 +1,11 @@
-# Theme Generation & Build Scripts
+---
+title: Generate Theme
+description: Guide to generating and building new block themes from the scaffold
+category: Development
+type: Guide
+audience: Developers
+date: 2025-12-01
+---
 
 This document explains how to use the scripts in the `bin/` directory to generate, build, and package a new WordPress block theme from this scaffold.
 

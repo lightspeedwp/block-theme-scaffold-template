@@ -1,3 +1,12 @@
+---
+title: Translations
+description: Language and translation files
+category: Documentation
+type: Index
+audience: Translators, Developers
+date: 2025-12-01
+---
+
 # Languages
 
 This directory contains translation files for internationalizing the theme.

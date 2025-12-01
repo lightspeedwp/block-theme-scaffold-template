@@ -1,4 +1,11 @@
-# Documentation
+---
+title: Documentation Index
+description: Comprehensive documentation index and navigation guide
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
 
 Comprehensive documentation for the {{theme_name}} block theme scaffold.
 

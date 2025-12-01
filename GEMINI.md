@@ -1,5 +1,11 @@
-
-# Gemini AI Usage for Block Theme Scaffold
+---
+title: Gemini Instructions
+description: Custom instructions for Google Gemini AI assistant
+category: Project
+type: Guide
+audience: AI Assistants
+date: 2025-12-01
+---
 
 This repository supports Gemini for advanced code generation, refactoring, and documentation in WordPress block theme development. Use Gemini for:
 

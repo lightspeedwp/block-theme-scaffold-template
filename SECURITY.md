@@ -1,4 +1,11 @@
-# Security Policy
+---
+title: Security Policy
+description: Security vulnerability reporting and response policy
+category: Project
+type: Policy
+audience: Developers, Security Researchers
+date: 2025-12-01
+---
 
 ## Supported Versions
 

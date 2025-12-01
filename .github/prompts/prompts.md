@@ -1,5 +1,13 @@
+---
+title: Block Theme Prompt Templates
+description: Prompt templates for consistent AI-assisted block theme development
+category: Documentation
+type: Prompt Templates
+audience: Developers, AI Assistants
+date: 2025-12-01
+---
 
-# Block Theme Scaffold: Prompt Templates & Authoring
+## Block Theme Scaffold: Prompt Templates & Authoring
 
 ## Overview & Related Files
 

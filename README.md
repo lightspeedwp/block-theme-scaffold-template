@@ -1,4 +1,11 @@
-# {{theme_name}}
+---
+title: Project Overview
+description: WordPress block theme scaffold with comprehensive documentation
+category: Project
+type: Index
+audience: Developers, Users
+date: 2025-12-01
+---
 
 {{description}}
 

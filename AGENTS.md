@@ -1,5 +1,11 @@
-
-# LightSpeed – Global AI & Agent Rules (AGENTS.md)
+---
+title: Global AI & Agent Rules
+description: Repository-wide rules and guidelines for AI agents and contributors
+category: Project
+type: Policy
+audience: Developers, AI Agents
+date: 2025-12-01
+---
 
 This repository is block theme–first and designed for advanced AI/Copilot/agent automation. All contributors and agents must follow these rules for safe, maintainable, and scalable WordPress block theme development.
 

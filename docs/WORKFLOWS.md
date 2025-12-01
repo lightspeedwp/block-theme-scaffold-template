@@ -1,4 +1,11 @@
-# GitHub Workflows Guide
+---
+title: GitHub Workflows Guide
+description: CI/CD workflows and GitHub Actions documentation
+category: Development
+type: Guide
+audience: Developers
+date: 2025-12-01
+---
 
 Complete guide to CI/CD workflows for the {{theme_name}} block theme scaffold.
 

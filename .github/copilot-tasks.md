@@ -1,4 +1,12 @@
-# Copilot Tasklist - Block Theme Scaffold
+---
+title: Copilot Tasklist
+description: Tracked tasks and audit items for automation
+category: Documentation
+type: Index
+audience: AI Assistants, Developers
+date: 2025-12-01
+---
+
 
 > **Status**: ✅ All audit remediation tasks completed (21/21)
 

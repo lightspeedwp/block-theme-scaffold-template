@@ -1,3 +1,12 @@
+---
+title: Template Parts
+description: WordPress template parts
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # Template Parts
 
 This directory contains reusable template parts for the block theme. Template parts now reference PHP patterns for better internationalization and reusability.

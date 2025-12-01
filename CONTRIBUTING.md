@@ -1,4 +1,11 @@
-# Contributing to {{theme_name}}
+---
+title: Contributing Guidelines
+description: Guidelines for contributing to the project
+category: Project
+type: Guide
+audience: Developers
+date: 2025-12-01
+---
 
 Thank you for your interest in contributing to {{theme_name}}! We welcome contributions from everyone.
 

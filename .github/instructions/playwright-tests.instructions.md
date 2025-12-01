@@ -1,3 +1,12 @@
+---
+title: Playwright Testing Instructions
+description: E2E testing guidelines using Playwright
+category: Project
+type: Guide
+audience: Developers
+date: 2025-12-01
+---
+
 # Playwright Test Instructions
 
 ## Directory & Setup

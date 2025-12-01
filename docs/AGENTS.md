@@ -1,4 +1,11 @@
-# AI Agents Guide
+---
+title: AI Agents Guide
+description: Overview of AI agents available for development automation and code quality
+category: Documentation
+type: Guide
+audience: Developers
+date: 2025-12-01
+---
 
 Overview of AI agents available for the {{theme_name}} block theme scaffold.
 

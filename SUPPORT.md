@@ -1,4 +1,11 @@
-# Support
+---
+title: Support Resources
+description: Support channels and resources for users
+category: Project
+type: Guide
+audience: Users
+date: 2025-12-01
+---
 
 Thank you for using {{theme_name}}! We're here to help you get the most out of your theme.
 
@@ -101,6 +108,7 @@ If you need faster support, consider:
 ### Troubleshooting
 
 1. **Theme Conflicts**
+
    ```
    - Switch to a default WordPress theme
    - Check if the issue persists
@@ -108,6 +116,7 @@ If you need faster support, consider:
    ```
 
 2. **Plugin Conflicts**
+
    ```
    - Deactivate all plugins
    - Check if the issue is resolved
@@ -115,6 +124,7 @@ If you need faster support, consider:
    ```
 
 3. **Clear Caches**
+
    ```
    - Clear any caching plugins
    - Clear browser cache
@@ -139,14 +149,17 @@ Help improve our support resources:
 ## Contact Information
 
 ### General Support
+
 - **Email**: {{support_email}}
 - **Response Time**: 1-3 business days
 
 ### Security Issues
+
 - **Email**: {{security_email}}
 - **Response Time**: 24 hours
 
 ### Business Inquiries
+
 - **Email**: {{business_email}}
 - **Response Time**: 1-2 business days
 
@@ -159,6 +172,6 @@ Help improve our support resources:
 
 ---
 
-**Remember**: The more information you provide, the better we can help you! 
+**Remember**: The more information you provide, the better we can help you!
 
 Thank you for using {{theme_name}}! 💙

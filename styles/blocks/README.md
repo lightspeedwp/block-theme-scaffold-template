@@ -1,3 +1,12 @@
+---
+title: Styles
+description: Theme styles and CSS
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # Block Style Variations
 
 This directory contains JSON files that define custom style variations for core blocks.

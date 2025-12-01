@@ -1,3 +1,12 @@
+---
+title: Templates
+description: WordPress block templates
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # Templates
 
 This directory contains HTML template files that define the structure of different page types. Templates use pattern references to maximize reusability and internationalization.

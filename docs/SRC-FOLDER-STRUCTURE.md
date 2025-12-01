@@ -1,14 +1,13 @@
 ---
-title: "{{name}} - Source Folder Structure"
-description: "Complete guide to the src/ folder structure for WordPress block development"
-version: "{{version}}"
-author: "{{author}}"
-last_updated: "2024-11-26"
+title: Source Folder Structure
+description: Complete guide to the src/ folder structure for WordPress block theme development
+category: Development
+type: Reference
+audience: Developers
+date: 2025-12-01
 ---
 
-# Source Folder Structure
-
-This document explains the complete `src/` folder structure for the {{name}} block plugin scaffold, based on [WordPress Block Editor Tutorial](https://developer.wordpress.org/block-editor/getting-started/tutorial/).
+This document explains the complete `src/` folder structure for the {{name}} block theme scaffold.
 
 ## Directory Overview
 

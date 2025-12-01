@@ -1,3 +1,12 @@
+---
+title: Theme JSON Instructions
+description: Standards for theme.json configuration
+category: Project
+type: Guide
+audience: Developers
+date: 2025-12-01
+---
+
 
 # JSON, Theme.json & Block.json Configuration & Validation Guidelines
 

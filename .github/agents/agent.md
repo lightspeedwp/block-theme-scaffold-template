@@ -1,3 +1,12 @@
+---
+title: Agent Specifications
+description: Documentation of automation agents and their configurations
+category: Project
+type: Reference
+audience: AI Assistants, Developers
+date: 2025-12-01
+---
+
 ## Overview & Related Files
 
 This file documents the primary automation agent(s) for this repository, their purpose, usage, and integration with workflows. Reference this file for agent specs, triggers, and environment variables.

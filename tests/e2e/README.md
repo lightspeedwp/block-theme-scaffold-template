@@ -1,3 +1,12 @@
+---
+title: Tests
+description: Test files and test configuration
+category: Testing
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # End-to-End Tests
 
 This directory contains Playwright end-to-end tests for browser automation and integration testing.
