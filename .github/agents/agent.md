@@ -4,12 +4,32 @@ This file documents the primary automation agent(s) for this repository, their p
 
 **Related Files:**
 - [Custom Instructions](../custom-instructions.md) — main AI/Copilot and theme instructions
-- [Chat Modes](../chatmodes/chatmodes.md) — context-specific Copilot prompts
 - [Prompts](../prompts/prompts.md) — prompt templates for consistent output
+- [Global AI Rules (AGENTS.md)](../../AGENTS.md) — org-wide agent rules and standards
+
+**Dynamic References:**
+- All instruction files: [`*.instructions.md`](../instructions/)
+- All agent files: [`*.agent.md`](../agents/) and [`*.agent.js`](../agents/)
+- All prompt files: [`*.prompt.md`](../prompts/)
 
 ---
 
-## Primary Agent: block-theme-build.agent.js
+## Available Agents
+
+### Scaffold Generator Agent
+
+- **Agent Spec:** `.github/agents/scaffold-generator.agent.md`
+- **Purpose:** Interactive agent that guides you through creating a new WordPress block theme from this scaffold. Collects requirements through a multi-stage conversation and generates the theme.
+- **Usage:** Say "Generate a new block theme" or "Create theme from scaffold"
+- **Related Prompt:** [generate-theme.prompt.md](../prompts/generate-theme.prompt.md)
+
+### Development Assistant Agent
+
+- **Agent Spec:** `.github/agents/development-assistant.agent.md`
+- **Purpose:** AI-powered development assistant for block theme development, providing guidance on patterns, templates, theme.json, and best practices.
+- **Modes:** Pattern Authoring, Theme.json Editing, PHP/JS/SCSS Expert, Testing & QA
+
+### Block Theme Build Agent
 
 - **Agent Script:** `.github/agents/block-theme-build.agent.js`
 - **Spec:** `.github/agents/block-theme-build.agent.md`

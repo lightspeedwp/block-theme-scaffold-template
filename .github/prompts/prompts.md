@@ -7,9 +7,32 @@ This repository uses prompt templates to ensure Copilot/AI output is consistent,
 
 **Related Files:**
 
-- [Chat Modes](../chatmodes/chatmodes.md) — context-specific Copilot prompts
+- [Development Assistant](../agents/development-assistant.agent.md) — AI development assistant with context-specific modes
+- [Scaffold Generator](../agents/scaffold-generator.agent.md) — Interactive theme generation agent
 - [Custom Instructions](../custom-instructions.md) — main AI/Copilot and theme instructions
 - [Main Agent Index](../agents/agent.md) — agent specs and usage
+
+---
+
+## Available Prompts
+
+| Prompt | Description | Usage |
+|--------|-------------|-------|
+| [generate-theme.prompt.md](./generate-theme.prompt.md) | Interactive theme generator | Start with "Generate a new block theme" |
+
+---
+
+## Quick Start: Generate a New Theme
+
+To create a new WordPress block theme from this scaffold:
+
+1. **Use the prompt**: Open [generate-theme.prompt.md](./generate-theme.prompt.md) in Copilot
+2. **Or invoke the agent**: Ask the [Scaffold Generator](../agents/scaffold-generator.agent.md)
+3. **Or run directly**:
+
+   ```bash
+   node bin/generate-theme.js --slug "my-theme" --name "My Theme" --author "Author"
+   ```
 
 ---
 
