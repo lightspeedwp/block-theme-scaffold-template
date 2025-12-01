@@ -9,6 +9,10 @@ coverage/
 artifacts/
 test-results/
 playwright-report/
+bin/
+docs/
+reports/
+.devcontainer/
 *.log
 *.lock
 .DS_Store

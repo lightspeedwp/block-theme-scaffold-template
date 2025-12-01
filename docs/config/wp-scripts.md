@@ -1,10 +1,27 @@
-# wp-scripts Configuration Guide
+# @wordpress/scripts Configuration
 
-This document details how `@wordpress/scripts` is configured in the {{theme_name}} block theme scaffold.
+Complete guide to using `@wordpress/scripts` in the {{theme_name}} block theme scaffold.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Quick Start](#quick-start)
+- [What is @wordpress/scripts?](#what-is-wordpressscripts)
+- [Installation](#installation)
+- [Configuration Files](#configuration-files)
+- [Build Commands](#build-commands)
+- [Build Process Features](#build-process-features)
+- [WordPress Packages](#wordpress-packages)
+- [Asset Management](#asset-management)
+- [Development Workflow](#development-workflow)
+- [Customization](#customization)
+- [Troubleshooting](#troubleshooting)
+- [Best Practices](#best-practices)
+- [Resources](#resources)
 
 ## Overview
 
-The theme uses `@wordpress/scripts` as its build system, which provides a standardized, zero-configuration approach to WordPress theme development with full support for:
+The theme uses `@wordpress/scripts` v31.0.0+ as its build system, providing a standardized, zero-configuration approach to WordPress theme development with full support for:
 
 ✅ **Compilation**: Modern JavaScript (ESNext) and JSX to browser-compatible code via Babel
 ✅ **Bundling**: Multiple files combined into optimized bundles via webpack
@@ -13,7 +30,20 @@ The theme uses `@wordpress/scripts` as its build system, which provides a standa
 ✅ **Sass Compilation**: `.scss` files converted to standard CSS
 ✅ **Code Minification**: JavaScript (Terser) and CSS (cssnano) optimization for production
 
-## What is wp-scripts?
+## Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server (watch mode with hot reload)
+npm run start
+
+# Build for production (minified and optimized)
+npm run build
+```
+
+## What is @wordpress/scripts?
 
 `@wordpress/scripts` is an official WordPress package that abstracts away complex build tool configurations. It provides:
 
@@ -133,9 +163,9 @@ extends @wordpress/browserslist-config
 - Targets browsers with >0.5% market share
 - Supports last 2 versions of each major browser
 
-### 3. .postcss.config.cjs
+### 3. postcss.config.cjs
 
-**Location**: `/.postcss.config.cjs`
+**Location**: `/postcss.config.cjs`
 
 **Purpose**: Configures PostCSS plugins for CSS processing.
 
@@ -206,7 +236,7 @@ module.exports = {
 - Checks for syntax errors
 - Validates property order and usage
 
-## Package.json Scripts
+## Build Commands
 
 All wp-scripts commands are defined in `package.json`:
 
@@ -240,7 +270,34 @@ All wp-scripts commands are defined in `package.json`:
 | `npm run test:js` | Runs JavaScript unit tests with Jest |
 | `npm run test:e2e` | Runs end-to-end tests with Playwright |
 
-## How wp-scripts Works
+## Build Process Features
+
+### Source Files → Build Files
+
+| Source | Output |
+|--------|--------|
+| `src/js/theme.js` | `build/js/theme.js` + `build/js/theme.asset.php` |
+| `src/js/editor.js` | `build/js/editor.js` + `build/js/editor.asset.php` |
+| `src/css/style.scss` | `build/css/style.css` + `build/css/style.asset.php` |
+| `src/css/editor.scss` | `build/css/editor-style.css` + `build/css/editor-style.asset.php` |
+
+### Build Flow
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e4d78', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#15354f', 'lineColor': '#333333', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#e8e8e8', 'background': '#ffffff', 'mainBkg': '#1e4d78', 'textColor': '#333333', 'nodeBorder': '#15354f', 'clusterBkg': '#f8f9fa', 'clusterBorder': '#dee2e6', 'titleColor': '#333333'}}}%%
+flowchart TD
+    Source["Source Files"] --> Start{"npm run start<br/>or build?"}
+    Start -->|start| Dev["Development Build"]
+    Start -->|build| Prod["Production Build"]
+
+    Dev --> Watch["Watch Mode"]
+    Dev --> Maps["Source Maps"]
+    Dev --> HMR["Hot Reload"]
+
+    Prod --> Minify["Minification"]
+    Prod --> Tree["Tree Shaking"]
+    Prod --> Optimize["Optimization"]
+```
 
 ### 1. Compilation (Babel)
 
@@ -266,8 +323,8 @@ export default MyComponent;
 var useState = wp.element.useState;
 var MyComponent = function() {
  var _useState = useState(0),
-     count = _useState[0],
-     setCount = _useState[1];
+  count = _useState[0],
+  setCount = _useState[1];
  return wp.element.createElement("button", {
   onClick: function() { return setCount(count + 1); }
  }, count);
@@ -393,19 +450,6 @@ flowchart LR
 - `dependencies`: Array of script handles that must be loaded first
 - `version`: Content hash for cache busting (changes when file changes)
 
-**Usage in theme**:
-
-```php
-$asset = include get_theme_file_path( 'build/js/theme.asset.php' );
-
-wp_enqueue_script(
- '{{theme_slug}}-script',
- get_theme_file_uri( 'build/js/theme.js' ),
- $asset['dependencies'],  // Automatically includes all WordPress dependencies
- $asset['version']        // Automatic cache invalidation
-);
-```
-
 ### 5. Code Minification
 
 **Development mode** (`npm run start`):
@@ -436,6 +480,81 @@ Development:
 Production:
   build/js/theme.js: 45 KB (70% smaller)
   build/css/style.css: 15 KB (70% smaller)
+```
+
+## WordPress Packages
+
+wp-scripts includes all `@wordpress/*` packages. Import them in your JavaScript:
+
+```javascript
+// Element (React)
+import { useState, useEffect } from '@wordpress/element';
+
+// Data management
+import { useSelect, useDispatch } from '@wordpress/data';
+
+// Components
+import { Button, Modal, TextControl } from '@wordpress/components';
+
+// Internationalization
+import { __ } from '@wordpress/i18n';
+const text = __( 'Hello', '{{theme_slug}}' );
+
+// API requests
+import apiFetch from '@wordpress/api-fetch';
+
+// Block editor
+import { BlockControls, InspectorControls } from '@wordpress/block-editor';
+
+// Utilities
+import { dateI18n } from '@wordpress/date';
+```
+
+**No manual enqueuing needed** - wp-scripts automatically adds dependencies to `.asset.php`.
+
+## Asset Management
+
+### Using .asset.php Files
+
+Each compiled file gets an `.asset.php` file with dependency information:
+
+```php
+// build/js/theme.asset.php
+<?php return array(
+ 'dependencies' => array(
+  'wp-element',
+  'wp-i18n',
+  'wp-polyfill',
+ ),
+ 'version' => 'a1b2c3d4e5f6'
+);
+```
+
+### Enqueuing in Theme
+
+```php
+// functions.php
+function {{theme_slug}}_enqueue_assets() {
+ // Load stylesheet
+ $asset = include get_theme_file_path( 'build/css/style.asset.php' );
+ wp_enqueue_style(
+  '{{theme_slug}}-style',
+  get_theme_file_uri( 'build/css/style.css' ),
+  $asset['dependencies'] ?? array(),
+  $asset['version'] ?? {{theme_slug|upper}}_VERSION
+ );
+
+ // Load JavaScript
+ $js_asset = include get_theme_file_path( 'build/js/theme.asset.php' );
+ wp_enqueue_script(
+  '{{theme_slug}}-script',
+  get_theme_file_uri( 'build/js/theme.js' ),
+  $js_asset['dependencies'] ?? array(),  // Auto-includes WordPress deps
+  $js_asset['version'] ?? {{theme_slug|upper}}_VERSION,  // Auto cache-busting
+  true
+ );
+}
+add_action( 'wp_enqueue_scripts', '{{theme_slug}}_enqueue_assets' );
 ```
 
 ## Development Workflow
@@ -500,36 +619,27 @@ This creates optimized bundles:
 - Tree-shaken (unused code removed)
 - Optimized images and assets
 
-## Using WordPress Packages
+### Daily Development Workflow
 
-wp-scripts includes all `@wordpress/*` packages. Import them in your JavaScript:
+```bash
+# Morning
+npm run start              # Start watch mode
 
-```javascript
-// Element (React)
-import { useState, useEffect } from '@wordpress/element';
+# While coding
+# Edit src/js/*.js
+# Edit src/css/*.scss
+# Files auto-rebuild
 
-// Data management
-import { useSelect, useDispatch } from '@wordpress/data';
+# Before committing
+npm run lint               # Check all code
+npm run format             # Format all files
+npm run test               # Run tests
 
-// Components
-import { Button, Modal, TextControl } from '@wordpress/components';
-
-// Internationalization
-import { __ } from '@wordpress/i18n';
-
-// API requests
-import apiFetch from '@wordpress/api-fetch';
-
-// Block editor
-import { BlockControls, InspectorControls } from '@wordpress/block-editor';
-
-// Utilities
-import { dateI18n } from '@wordpress/date';
+# Before deploying
+npm run build              # Production build
 ```
 
-**No manual enqueuing needed** - wp-scripts automatically adds dependencies to `.asset.php`.
-
-## Customization Examples
+## Customization
 
 ### Adding a New Entry Point
 
@@ -587,6 +697,12 @@ import { formatDate } from '@js/utils/date';
 import '@css/components/header.scss';
 ```
 
+Pre-configured aliases:
+
+- `@` → `src/`
+- `@js` → `src/js/`
+- `@css` → `src/css/`
+
 ### External Dependencies
 
 To prevent bundling large libraries (e.g., jQuery), mark them as external:
@@ -601,6 +717,41 @@ module.exports = {
   lodash: 'lodash',  // Use WordPress's Lodash
  },
 };
+```
+
+### Performance Optimization
+
+#### 1. Code Splitting
+
+Separate entry points for frontend and editor:
+
+```javascript
+entry: {
+ 'js/theme': './src/js/theme.js',    // Frontend only
+ 'js/editor': './src/js/editor.js',  // Editor only
+}
+```
+
+#### 2. Dynamic Imports
+
+```javascript
+// Instead of:
+import HeavyComponent from './HeavyComponent';
+
+// Use:
+const HeavyComponent = () => import('./HeavyComponent');
+```
+
+#### 3. Tree Shaking
+
+Only import what you need:
+
+```javascript
+// ❌ Imports entire library
+import _ from 'lodash';
+
+// ✅ Imports only what's needed
+import { debounce } from 'lodash';
 ```
 
 ## Troubleshooting
@@ -677,6 +828,26 @@ wp_enqueue_script(
 );
 ```
 
+### Linting Errors
+
+**Solution**:
+
+```bash
+npm run lint:js:fix
+npm run lint:css:fix
+npm run format
+```
+
+### Complete Reset
+
+If all else fails:
+
+```bash
+rm -rf node_modules build
+npm install
+npm run build
+```
+
 ## Best Practices
 
 ### 1. Always Use Build Process
@@ -736,17 +907,40 @@ npm run build
 # Test the production build locally
 ```
 
-## Additional Resources
+### 6. Use Semantic Commits
+
+Follow conventional commit format:
+
+```bash
+git commit -m "feat: add new header component"
+git commit -m "fix: resolve navigation menu issue"
+git commit -m "refactor: optimize JavaScript bundling"
+```
+
+## Browser Support
+
+Based on `.browserslistrc`:
+
+- Chrome (last 2 versions)
+- Firefox (last 2 versions)
+- Safari (last 2 versions)
+- Edge (last 2 versions)
+- Browsers with >0.5% market share
+
+Modern features are automatically transpiled/polyfilled.
+
+## Resources
 
 - [@wordpress/scripts Documentation](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/)
 - [webpack Documentation](https://webpack.js.org/)
 - [Babel Documentation](https://babeljs.io/docs/)
 - [WordPress JavaScript Packages](https://developer.wordpress.org/block-editor/reference-guides/packages/)
 - [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/)
+- [Theme Build Process](https://developer.wordpress.org/themes/advanced-topics/build-process/)
 
 ## Summary
 
-This theme's build process is powered by `@wordpress/scripts`, providing:
+This theme's build process is powered by `@wordpress/scripts` v31.0.0+, providing:
 
 ✅ Zero-configuration setup with sensible defaults
 ✅ Full customization when needed via `webpack.config.cjs`
