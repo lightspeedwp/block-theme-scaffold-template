@@ -248,7 +248,7 @@ This creates `languages/{{theme_slug}}.pot` file containing all translatable str
 
 ```php
 <?php esc_html_e( 'Text to translate', '{{theme_slug}}' ); ?>
-<?php esc_html_x( 'Text', 'context', '{{theme_slug}}' ); ?>
+<?php echo esc_html_x( 'Text', 'context', '{{theme_slug}}' ); ?>
 <?php printf( esc_html__( 'Hello %s', '{{theme_slug}}' ), $name ); ?>
 ```
 
