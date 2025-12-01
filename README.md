@@ -7,6 +7,8 @@ audience: Developers, Users
 date: 2025-12-01
 ---
 
+# {{theme_name}}
+
 {{description}}
 
 A modern WordPress block theme supporting Full Site Editing (FSE), built with mustache templates for rapid development and deployment.
