@@ -1,31 +1,55 @@
 # Templates
 
-This directory contains HTML template files that define the structure of different page types.
+This directory contains HTML template files that define the structure of different page types. Templates use pattern references to maximize reusability and internationalization.
 
 ## Overview
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#1e4d78', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#15354f', 'lineColor': '#333333', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#e8e8e8', 'background': '#ffffff', 'mainBkg': '#1e4d78', 'textColor': '#333333', 'nodeBorder': '#15354f', 'clusterBkg': '#f8f9fa', 'clusterBorder': '#dee2e6', 'titleColor': '#333333'}}}%%
 flowchart TB
-    subgraph Core["Core Templates"]
-        Index["index.html<br/>Fallback"]
-        Single["single.html<br/>Posts"]
-        Page["page.html<br/>Pages"]
-        Archive["archive.html<br/>Archives"]
+    subgraph Templates["Page Templates"]
+        direction TB
+        subgraph Core["Core"]
+            Index["index.html"]
+            Single["single.html"]
+            Page["page.html"]
+            Archive["archive.html"]
+        end
+        subgraph Archive["Archive"]
+            Home["home.html"]
+            Author["author.html"]
+            Category["category.html"]
+            Tag["tag.html"]
+            Search["search.html"]
+        end
+        subgraph Special["Special"]
+            FrontPage["front-page.html"]
+            Singular["singular.html"]
+            E404["404.html"]
+        end
     end
 
-    subgraph Specific["Specific Templates"]
-        Home["home.html<br/>Blog Home"]
-        Author["author.html<br/>Author Pages"]
-        Category["category.html<br/>Categories"]
-        Tag["tag.html<br/>Tags"]
-        Search["search.html<br/>Search Results"]
-        E404["404.html<br/>Not Found"]
+    subgraph Patterns["PHP Patterns Used"]
+        QueryList["query-posts-list"]
+        QueryGrid["query-posts-grid"]
+        SinglePost["single-post-content"]
+        ArchiveHdr["archive-header"]
+        AuthorHdr["author-header"]
+        Hero["hero"]
+        Content404["404-content"]
     end
 
-    subgraph Special["Special"]
-        Singular["singular.html<br/>Posts & Pages"]
-    end
+    Index --> QueryList
+    Single --> SinglePost
+    Archive --> QueryList
+    Home --> QueryGrid
+    Author --> AuthorHdr
+    Category --> ArchiveHdr
+    Tag --> ArchiveHdr
+    Search --> QueryList
+    FrontPage --> Hero
+    Singular --> SinglePost
+    E404 --> Content404
 ```
 
 ## Template Hierarchy
@@ -58,89 +82,92 @@ flowchart TD
     E404 --> Index
 ```
 
-## Templates
+## Template Files
 
 ### Core Templates
 
-| Template | Purpose | Fallback |
-|----------|---------|----------|
-| `index.html` | Default fallback for all pages | — |
-| `single.html` | Individual blog posts | `singular.html` |
-| `page.html` | Static pages | `singular.html` |
-| `archive.html` | Archive listings | `index.html` |
+| Template | Purpose | Pattern Used | Fallback |
+|----------|---------|--------------|----------|
+| `index.html` | Default fallback | `query-posts-list` | — |
+| `single.html` | Individual blog posts | `single-post-content` | `singular.html` |
+| `page.html` | Static pages | — | `singular.html` |
+| `archive.html` | Archive listings | `archive-header`, `query-posts-list` | `index.html` |
 
 ### Archive Templates
 
-| Template | Purpose | Fallback |
-|----------|---------|----------|
-| `home.html` | Blog posts page | `index.html` |
-| `author.html` | Author archive | `archive.html` |
-| `category.html` | Category archive | `archive.html` |
-| `tag.html` | Tag archive | `archive.html` |
-| `search.html` | Search results | `index.html` |
+| Template | Purpose | Pattern Used | Fallback |
+|----------|---------|--------------|----------|
+| `home.html` | Blog posts page | `query-posts-grid` | `index.html` |
+| `author.html` | Author archive | `author-header`, `query-posts-grid` | `archive.html` |
+| `category.html` | Category archive | `archive-header`, `query-posts-list` | `archive.html` |
+| `tag.html` | Tag archive | `archive-header`, `query-posts-grid` | `archive.html` |
+| `search.html` | Search results | `query-posts-list`, `no-search-results` | `index.html` |
 
 ### Special Templates
 
-| Template | Purpose | Fallback |
-|----------|---------|----------|
-| `singular.html` | Posts and pages | `index.html` |
-| `404.html` | Not found page | `index.html` |
+| Template | Purpose | Pattern Used | Fallback |
+|----------|---------|--------------|----------|
+| `front-page.html` | Site front page | `hero`, `query-posts-grid`, `features`, `testimonials`, `call-to-action` | `home.html` |
+| `singular.html` | Posts and pages | `single-post-content` | `index.html` |
+| `404.html` | Not found page | `404-content` | `index.html` |
 
 ## Template Structure
 
-Each template typically includes:
+Each template uses pattern references for content while maintaining consistent layout:
 
 ```html
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main"} -->
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
 <main class="wp-block-group">
-    <!-- Main content blocks -->
+    <!-- wp:pattern {"slug":"{{theme_slug}}/pattern-name"} /-->
 </main>
 <!-- /wp:group -->
 
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
 ```
 
-## Common Blocks Used
+## Pattern References
 
-### Query Loop (Archives)
+Templates reference PHP patterns instead of inline block markup:
 
-```html
-<!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post"}} -->
-<div class="wp-block-query">
-    <!-- wp:post-template -->
-        <!-- wp:post-title {"isLink":true} /-->
-        <!-- wp:post-excerpt /-->
-        <!-- wp:post-date /-->
-    <!-- /wp:post-template -->
-
-    <!-- wp:query-pagination -->
-        <!-- wp:query-pagination-previous /-->
-        <!-- wp:query-pagination-numbers /-->
-        <!-- wp:query-pagination-next /-->
-    <!-- /wp:query-pagination -->
-</div>
-<!-- /wp:query -->
-```
-
-### Post Content (Single)
-
-```html
-<!-- wp:post-title {"level":1} /-->
-<!-- wp:post-featured-image /-->
-<!-- wp:post-content /-->
-<!-- wp:post-terms {"term":"category"} /-->
-<!-- wp:post-terms {"term":"post_tag"} /-->
-```
+| Pattern | Purpose | Used In |
+|---------|---------|---------|
+| `query-posts-list` | List-style post loop | index, archive, category, search |
+| `query-posts-grid` | Grid-style post loop | home, author, tag, front-page |
+| `single-post-content` | Single post layout | single, singular |
+| `archive-header` | Archive title/description | archive, category, tag |
+| `author-header` | Author bio display | author |
+| `404-content` | 404 page content | 404 |
+| `no-search-results` | Empty search message | search |
+| `hero` | Hero section | front-page |
+| `features` | Features grid | front-page |
+| `testimonials` | Testimonials section | front-page |
+| `call-to-action` | CTA section | front-page |
 
 ## Creating Custom Templates
 
-1. Create an HTML file in this directory
-2. Add block markup using WordPress block syntax
-3. Register in `theme.json` if needed
+1. Create a PHP pattern for the content in `patterns/`
+2. Create an HTML file in this directory that references the pattern
+3. Register in `theme.json` if needed for custom templates
 
-**Example: Landing Page Template**
+### Example: Landing Page Template
+
+Create `patterns/landing-content.php`:
+
+```php
+<?php
+/**
+ * Title: Landing Page Content
+ * Slug: {{theme_slug}}/landing-content
+ * Template Types: landing
+ * Inserter: no
+ */
+?>
+<!-- Landing page content with i18n -->
+```
+
+Create `templates/landing.html`:
 
 ```html
 <!-- wp:template-part {"slug":"header"} /-->

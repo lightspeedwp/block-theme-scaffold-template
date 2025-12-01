@@ -1,28 +1,16 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--50);margin-bottom:var(--wp--preset--spacing--50)">
-	<!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"displayLayout":{"type":"list","columns":3},"layout":{"type":"default"}} -->
-	<div class="wp-block-query">
-		<!-- wp:post-template -->
-			<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9"} /-->
+<!-- wp:pattern {"slug":"{{theme_slug}}/hero"} /-->
 
-			<!-- wp:post-title {"isLink":true} /-->
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group">
+	<!-- wp:pattern {"slug":"{{theme_slug}}/query-posts-grid"} /-->
 
-			<!-- wp:template-part {"slug":"post-meta"} /-->
+	<!-- wp:pattern {"slug":"{{theme_slug}}/features"} /-->
 
-			<!-- wp:post-excerpt {"moreText":"Read more","excerptLength":30} /-->
-		<!-- /wp:post-template -->
+	<!-- wp:pattern {"slug":"{{theme_slug}}/testimonials"} /-->
 
-		<!-- wp:template-part {"slug":"pagination"} /-->
-
-		<!-- wp:query-no-results -->
-			<!-- wp:paragraph {"align":"center"} -->
-			<p class="has-text-align-center">No posts found.</p>
-			<!-- /wp:paragraph -->
-		<!-- /wp:query-no-results -->
-	</div>
-	<!-- /wp:query -->
+	<!-- wp:pattern {"slug":"{{theme_slug}}/call-to-action"} /-->
 </main>
 <!-- /wp:group -->
 

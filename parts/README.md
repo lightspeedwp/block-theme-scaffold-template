@@ -1,6 +1,6 @@
 # Template Parts
 
-This directory contains reusable template parts for the block theme.
+This directory contains reusable template parts for the block theme. Template parts now reference PHP patterns for better internationalization and reusability.
 
 ## Overview
 
@@ -17,30 +17,49 @@ flowchart TB
     subgraph Parts["Template Parts"]
         Header["header.html"]
         Footer["footer.html"]
-        Sidebar["sidebar.html"]
-        Comments["comments.html"]
+        PostMeta["post-meta.html"]
+        Pagination["pagination.html"]
+    end
+
+    subgraph Patterns["PHP Patterns"]
+        HeaderP["patterns/header.php"]
+        FooterP["patterns/footer.php"]
+        PostMetaP["patterns/post-meta.php"]
+        PaginationP["patterns/pagination.php"]
     end
 
     Templates --> Header
     Templates --> Footer
-    Templates --> Sidebar
-    Single --> Comments
+    Header --> HeaderP
+    Footer --> FooterP
+    PostMeta --> PostMetaP
+    Pagination --> PaginationP
 ```
+
+## Pattern-Based Architecture
+
+Template parts reference PHP patterns to enable:
+
+- **Internationalization**: PHP patterns support translation functions
+- **Accessibility**: Patterns include ARIA labels and semantic markup
+- **Reusability**: Same pattern can be used in parts and templates
+- **Block Types Binding**: Patterns can be bound to specific block types
 
 ## Template Parts
 
 ### `header.html`
 
-The site header containing logo, site title, and navigation.
+The site header, referencing the header pattern for full i18n support.
 
-**Block Structure:**
+**Pattern Reference:**
 
+```html
+<!-- wp:pattern {"slug":"{{theme_slug}}/header"} /-->
 ```
-└── Group (Header)
-    ├── Site Logo
-    ├── Site Title
-    └── Navigation
-```
+
+**Pattern Location:** `patterns/header.php`
+
+**Block Types:** `core/template-part/header`
 
 **Usage in templates:**
 
@@ -50,16 +69,17 @@ The site header containing logo, site title, and navigation.
 
 ### `footer.html`
 
-The site footer with copyright and secondary navigation.
+The site footer with social links and copyright, referencing the footer pattern.
 
-**Block Structure:**
+**Pattern Reference:**
 
+```html
+<!-- wp:pattern {"slug":"{{theme_slug}}/footer"} /-->
 ```
-└── Group (Footer)
-    ├── Site Title
-    ├── Paragraph (Copyright)
-    └── Navigation (Footer Menu)
-```
+
+**Pattern Location:** `patterns/footer.php`
+
+**Block Types:** `core/template-part/footer`
 
 **Usage in templates:**
 
@@ -67,45 +87,31 @@ The site footer with copyright and secondary navigation.
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
 ```
 
-### `sidebar.html`
+### `post-meta.html`
 
-Optional sidebar for widget areas.
+Post metadata display (author, date, categories, tags).
 
-**Block Structure:**
-
-```
-└── Group (Sidebar)
-    ├── Heading
-    ├── Categories
-    ├── Recent Posts
-    └── Tag Cloud
-```
-
-**Usage in templates:**
+**Pattern Reference:**
 
 ```html
-<!-- wp:template-part {"slug":"sidebar"} /-->
+<!-- wp:pattern {"slug":"{{theme_slug}}/post-meta"} /-->
 ```
 
-### `comments.html`
+**Pattern Location:** `patterns/post-meta.php`
 
-Comments section for posts and pages.
+### `pagination.html`
 
-**Block Structure:**
+Query pagination for post lists.
 
-```
-└── Comments
-    ├── Comments Title
-    ├── Comment Template
-    ├── Comments Pagination
-    └── Post Comments Form
-```
-
-**Usage in templates:**
+**Pattern Reference:**
 
 ```html
-<!-- wp:template-part {"slug":"comments"} /-->
+<!-- wp:pattern {"slug":"{{theme_slug}}/pagination"} /-->
 ```
+
+**Pattern Location:** `patterns/pagination.php`
+
+**Block Types:** `core/query`
 
 ## Template Part Areas
 
@@ -125,13 +131,13 @@ Template parts are registered in `theme.json`:
       "area": "footer"
     },
     {
-      "name": "sidebar",
-      "title": "Sidebar",
+      "name": "post-meta",
+      "title": "Post Meta",
       "area": "uncategorized"
     },
     {
-      "name": "comments",
-      "title": "Comments",
+      "name": "pagination",
+      "title": "Pagination",
       "area": "uncategorized"
     }
   ]
@@ -152,42 +158,76 @@ flowchart LR
     subgraph Parts["Parts"]
         H["header.html"]
         F["footer.html"]
-        S["sidebar.html"]
-        C["comments.html"]
+        PM["post-meta.html"]
+        PG["pagination.html"]
     end
 
     H --> HeaderArea
     F --> FooterArea
-    S --> Uncategorized
-    C --> Uncategorized
+    PM --> Uncategorized
+    PG --> Uncategorized
 ```
+
+## Why Pattern References?
+
+Template parts that reference patterns benefit from:
+
+| Benefit | Description |
+|---------|-------------|
+| **Internationalization** | PHP patterns support `esc_html_e()` and other translation functions |
+| **Accessibility** | Patterns can include ARIA labels with translatable strings |
+| **Block Types Binding** | Patterns with `Block Types` header appear as suggestions in the editor |
+| **Single Source** | Update the pattern once, template part automatically reflects changes |
 
 ## Creating New Template Parts
 
-1. Create an HTML file in this directory
-2. Add block markup using WordPress block syntax
+1. Create a PHP pattern in `patterns/` directory with proper headers
+2. Create an HTML file in this directory that references the pattern
 3. Register the part in `theme.json`
 
-**Example new part:**
+**Example - New template part with pattern:**
 
-```html
+**Step 1.** Create `patterns/sidebar.php`:
+
+```php
+<?php
+/**
+ * Title: Sidebar
+ * Slug: {{theme_slug}}/sidebar
+ * Categories: layout
+ * Keywords: sidebar, widgets
+ * Description: Sidebar with recent posts and categories.
+ */
+?>
 <!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
     <!-- wp:heading -->
-    <h2>Related Posts</h2>
+    <h2><?php esc_html_e( 'Recent Posts', '{{theme_slug}}' ); ?></h2>
     <!-- /wp:heading -->
-
-    <!-- wp:query {"queryId":1,"query":{"perPage":3}} -->
-    <!-- wp:post-template -->
-    <!-- wp:post-title /-->
-    <!-- /wp:post-template -->
-    <!-- /wp:query -->
+    <!-- wp:latest-posts /-->
 </div>
 <!-- /wp:group -->
 ```
 
+**Step 2.** Create `parts/sidebar.html`:
+
+```html
+<!-- wp:pattern {"slug":"{{theme_slug}}/sidebar"} /-->
+```
+
+**Step 3.** Register in `theme.json`:
+
+```json
+{
+  "name": "sidebar",
+  "title": "Sidebar",
+  "area": "uncategorized"
+}
+```
+
 ## Related Documentation
 
+- [Block Patterns](../patterns/README.md)
 - [Templates](../templates/README.md)
 - [Block Theme Template Parts](https://developer.wordpress.org/themes/templates/template-parts/)
 - [theme.json Reference](https://developer.wordpress.org/themes/global-settings-and-styles/theme-json-reference/)
