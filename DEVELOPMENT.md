@@ -7,8 +7,6 @@ audience: Developers
 date: 2025-12-01
 ---
 
-# Development Guide
-
 This document provides comprehensive information for developers working on {{theme_name}}.
 
 ## Prerequisites
@@ -476,6 +474,20 @@ The `theme.json` file controls all theme settings:
 1. Create new pattern files in the `patterns/` directory
 2. Register patterns in `inc/block-patterns.php`:
 
+   ```php
+   register_block_pattern(
+     '{{theme_slug}}/pattern-name',
+     array(
+       'title'       => __( 'Pattern Name', '{{theme_slug}}' ),
+       'description' => __( 'Pattern description', '{{theme_slug}}' ),
+       'content'     => '<!-- wp:paragraph --><p>Content</p><!-- /wp:paragraph -->',
+       'categories'  => array( 'featured' ),
+     )
+   );
+   ```
+
+3. Add pattern categories as needed in `inc/block-patterns.php`
+
 ```php
 register_block_pattern(
   '{{theme_slug}}/pattern-name',
@@ -488,7 +500,7 @@ register_block_pattern(
 );
 ```
 
-3. Add pattern categories as needed in `inc/block-patterns.php`
+4. Add pattern categories as needed in `inc/block-patterns.php`
 
 ### Adding Style Variations
 
