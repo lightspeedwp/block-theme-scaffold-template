@@ -562,7 +562,7 @@ node bin/generate-theme.js \
   --name "Tour Starter Theme" \
   --description "A modern WordPress block theme designed for tour operators and travel agencies" \
   --author "LightSpeed" \
-  --author_uri "https://developer.lsdev.biz" \
+  --author_uri "https://developer.lightspeedwp.agency/" \
   --version "1.0.0"
 ```
 

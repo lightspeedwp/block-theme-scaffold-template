@@ -35,41 +35,41 @@ To start generating a new theme, simply say:
 
 ### Stage 1: Core Identity (Required)
 
-| Question | Variable | Example | Validation |
-|----------|----------|---------|------------|
-| Theme display name | `{{theme_name}}` | "Tour Starter" | Min 2 chars |
-| Theme slug | `{{theme_slug}}` | "tour-starter" | Lowercase, hyphens, min 2 chars |
-| Description | `{{description}}` | "A modern block theme" | Any text |
-| Author name | `{{author}}` | "LightSpeed" | Min 2 chars |
-| Author website | `{{author_uri}}` | "https://example.com" | Valid URL |
+| Question           | Variable          | Example                | Validation                      |
+| ------------------ | ----------------- | ---------------------- | ------------------------------- |
+| Theme display name | `{{theme_name}}`  | "Tour Starter"         | Min 2 chars                     |
+| Theme slug         | `{{theme_slug}}`  | "tour-starter"         | Lowercase, hyphens, min 2 chars |
+| Description        | `{{description}}` | "A modern block theme" | Any text                        |
+| Author name        | `{{author}}`      | "LightSpeed"           | Min 2 chars                     |
+| Author website     | `{{author_uri}}`  | "https://example.com"  | Valid URL                       |
 
 ### Stage 2: Versioning (Has Defaults)
 
-| Question | Variable | Default | Notes |
-|----------|----------|---------|-------|
-| Initial version | `{{version}}` | "1.0.0" | Semver format |
-| Minimum WordPress | `{{min_wp_version}}` | "6.5" | Block theme requires 6.0+ |
-| Tested WordPress | `{{tested_wp_version}}` | "6.7" | Latest stable |
-| Minimum PHP | `{{min_php_version}}` | "8.0" | PHP 8.0+ recommended |
+| Question          | Variable                | Default | Notes                     |
+| ----------------- | ----------------------- | ------- | ------------------------- |
+| Initial version   | `{{version}}`           | "1.0.0" | Semver format             |
+| Minimum WordPress | `{{min_wp_version}}`    | "6.5"   | Block theme requires 6.0+ |
+| Tested WordPress  | `{{tested_wp_version}}` | "6.7"   | Latest stable             |
+| Minimum PHP       | `{{min_php_version}}`   | "8.0"   | PHP 8.0+ recommended      |
 
 ### Stage 3: Design Tokens (Optional)
 
-| Question | Variable | Default | Format |
-|----------|----------|---------|--------|
-| Primary colour | `{{primary_color}}` | "#0073aa" | Hex colour |
-| Secondary colour | `{{secondary_color}}` | "#005177" | Hex colour |
-| Background colour | `{{background_color}}` | "#ffffff" | Hex colour |
-| Text colour | `{{text_color}}` | "#1a1a1a" | Hex colour |
-| Body font family | `{{font_family}}` | "system-ui" | CSS font-family |
-| Heading font | `{{heading_font}}` | "inherit" | CSS font-family |
+| Question          | Variable               | Default     | Format          |
+| ----------------- | ---------------------- | ----------- | --------------- |
+| Primary colour    | `{{primary_color}}`    | "#0073aa"   | Hex colour      |
+| Secondary colour  | `{{secondary_color}}`  | "#005177"   | Hex colour      |
+| Background colour | `{{background_color}}` | "#ffffff"   | Hex colour      |
+| Text colour       | `{{text_color}}`       | "#1a1a1a"   | Hex colour      |
+| Body font family  | `{{font_family}}`      | "system-ui" | CSS font-family |
+| Heading font      | `{{heading_font}}`     | "inherit"   | CSS font-family |
 
 ### Stage 4: Initial Content (Optional)
 
-| Question | Variable | Default |
-|----------|----------|---------|
-| Homepage hero title | `{{hero_title}}` | "Welcome" |
-| Call-to-action text | `{{cta_text}}` | "Get Started" |
-| Footer copyright | `{{footer_text}}` | "© {{author}}" |
+| Question            | Variable          | Default        |
+| ------------------- | ----------------- | -------------- |
+| Homepage hero title | `{{hero_title}}`  | "Welcome"      |
+| Call-to-action text | `{{cta_text}}`    | "Get Started"  |
+| Footer copyright    | `{{footer_text}}` | "© {{author}}" |
 
 ---
 
@@ -84,42 +84,45 @@ To start generating a new theme, simply say:
 **Stage 1: Core Identity**
 
 Please provide:
+
 1. **Theme Name** — The display name (e.g., 'Tour Starter Theme')
 2. **Theme Slug** — URL-safe identifier (e.g., 'tour-starter')
 3. **Description** — What does your theme do?
 4. **Author Name** — Who is creating this?
 5. **Author URI** — Your website URL
 
-*You can answer all at once or one by one.*"
+_You can answer all at once or one by one._"
 
 ### Confirming Responses
 
 **User**: "
+
 1. Safari Lodge Theme
 2. safari-lodge
 3. A luxurious WordPress theme for safari lodges and eco-tourism
 4. LightSpeed
-5. https://developer.lsdev.biz"
+5. https://lightspeedwp.agency/"
 
 **Me**: "Perfect! I've captured your Stage 1 answers:
 
-| Field | Value |
-|-------|-------|
-| Theme Name | Safari Lodge Theme |
-| Theme Slug | safari-lodge |
+| Field       | Value                                                         |
+| ----------- | ------------------------------------------------------------- |
+| Theme Name  | Safari Lodge Theme                                            |
+| Theme Slug  | safari-lodge                                                  |
 | Description | A luxurious WordPress theme for safari lodges and eco-tourism |
-| Author | LightSpeed |
-| Author URI | https://developer.lsdev.biz |
+| Author      | LightSpeed                                                    |
+| Author URI  | https://lightspeedwp.agency/                                  |
 
 **Stage 2: Versioning**
 
 Would you like to use defaults?
+
 - Version: 1.0.0
 - Min WP: 6.5
 - Tested WP: 6.7
 - Min PHP: 8.0
 
-*Say 'yes' for defaults, or provide custom values.*"
+_Say 'yes' for defaults, or provide custom values._"
 
 ### Proceeding with Defaults
 
@@ -131,7 +134,7 @@ Would you like to use defaults?
 
 Would you like to configure custom colours and fonts now, or skip to generation?
 
-*Say 'skip' to use defaults, or provide your brand colours.*"
+_Say 'skip' to use defaults, or provide your brand colours._"
 
 ### Skipping Optional Stages
 
@@ -140,6 +143,7 @@ Would you like to configure custom colours and fonts now, or skip to generation?
 **Me**: "Ready to generate!
 
 **Summary:**
+
 ```
 Theme Name:     Safari Lodge Theme
 Theme Slug:     safari-lodge
@@ -158,7 +162,7 @@ Min PHP:        8.0
 
 **User**: "yes"
 
-**Me**: *Runs the generation script:*
+**Me**: _Runs the generation script:_
 
 ```bash
 cd /path/to/block-theme-scaffold && node bin/generate-theme.js \
@@ -166,7 +170,7 @@ cd /path/to/block-theme-scaffold && node bin/generate-theme.js \
   --name "Safari Lodge Theme" \
   --description "A luxurious WordPress theme for safari lodges and eco-tourism" \
   --author "LightSpeed" \
-  --author_uri "https://developer.lsdev.biz" \
+  --author_uri "https://lightspeedwp.agency/" \
   --version "1.0.0" \
   --min_wp_version "6.5" \
   --tested_wp_version "6.7" \
@@ -178,6 +182,7 @@ cd /path/to/block-theme-scaffold && node bin/generate-theme.js \
 Your new theme is at: `./output-theme/`
 
 **Next Steps:**
+
 1. Move the theme to your WordPress themes directory
 2. Run `npm install` to install dependencies
 3. Run `npm run start` to begin development
@@ -190,20 +195,24 @@ Would you like me to help you with any of these steps?"
 ## Validation Rules
 
 ### Slug Validation
+
 - Lowercase letters, numbers, hyphens only
 - Minimum 2 characters
 - No path traversal characters
 - No spaces or special characters
 
 ### URL Validation
+
 - Must be http:// or https://
 - Must be a valid URL format
 
 ### Version Validation
+
 - Must follow semver (X.Y.Z or X.Y)
 - Examples: 1.0.0, 2.1, 1.0.0-beta.1
 
 ### Colour Validation
+
 - Must be valid hex colour (#RGB or #RRGGBB)
 - Examples: #fff, #ffffff, #0073aa
 
@@ -218,6 +227,7 @@ If validation fails, I'll explain the issue and ask for a corrected value:
 > ❌ "my theme!" is not a valid slug.
 >
 > Slugs must:
+>
 > - Use only lowercase letters, numbers, and hyphens
 > - Be at least 2 characters long
 >
@@ -231,6 +241,8 @@ If validation fails, I'll explain the issue and ask for a corrected value:
 
 - [Generate Theme Script](../../bin/generate-theme.js)
 - [Generate Theme Prompt](../prompts/generate-theme.prompt.md)
+- [Generate Theme Instructions](../instructions/generate-theme.instructions.md)
 - [Development Assistant](./development-assistant.agent.md)
+- [Development Assistant](./block-theme-build.agent.md)
 - [Theme JSON Instructions](../instructions/theme-json.instructions.md)
-- [Coding Standards](../instructions/coding-standards.instructions.md)
+- [PHP Coding Standards](../instructions/php-wordpress.instructions.md)

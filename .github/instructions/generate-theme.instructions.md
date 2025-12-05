@@ -228,8 +228,6 @@ Text color (default: #1a1a1a):
 | `{{heading_font_name}}`   | `"System Font"`           | Display name for headings font |
 | `{{body_font_family}}`    | `"system-ui, sans-serif"` | CSS font stack for body        |
 | `{{body_font_name}}`      | `"System Font"`           | Display name for body font     |
-| `{{mono_font_family}}`    | `"monospace"`             | CSS font stack for code        |
-| `{{mono_font_name}}`      | `"Monospace"`             | Display name for mono font     |
 
 **Font family format:**
 
