@@ -1,11 +1,20 @@
 /**
  * Editor JavaScript enhancements
+ *
+ * Imports WordPress packages for:
+ * - @wordpress/i18n: Internationalization
+ * - @wordpress/a11y: Accessibility announcements
  */
 
 import { __ } from '@wordpress/i18n';
+import { speak } from '@wordpress/a11y';
+
 
 // Register custom block styles in the editor
 wp.domReady( function() {
+	// Announce action to screen readers using @wordpress/a11y
+	speak( __( 'Editor enhancements initializing', '{{theme_slug}}' ) );
+
 	// Unregister unwanted core block styles
 	wp.blocks.unregisterBlockStyle( 'core/quote', 'large' );
 	wp.blocks.unregisterBlockStyle( 'core/separator', 'wide' );

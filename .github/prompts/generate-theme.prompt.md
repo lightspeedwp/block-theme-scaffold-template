@@ -6,6 +6,11 @@ description: Interactive WordPress block theme generator - guides you through cr
 
 I'll help you generate a new WordPress block theme from this scaffold. Let's gather the information needed to create your theme.
 
+**Important:** This prompt uses the mustache template variable system. For complete documentation on how variables work and detailed AI agent instructions, see:
+
+- [Generate Theme Instructions](../instructions/generate-theme.instructions.md) - Comprehensive guide for AI agents
+- [Generate Theme Documentation](../../docs/GENERATE-THEME.md) - Complete mustache variable reference
+
 ## Information Gathering Process
 
 I need to collect several pieces of information from you. I'll ask questions in stages to keep things organised.
@@ -113,13 +118,14 @@ After generating, I'll help you:
 4. Author Name:
 5. Author URI:
 
-*Reply with your answers, and I'll confirm them before moving to Stage 2.*
+_Reply with your answers, and I'll confirm them before moving to Stage 2._
 
 ---
 
 ## Example Session
 
 **User**:
+
 1. Tour Starter Theme
 2. tour-starter
 3. A modern WordPress block theme for tour operators
@@ -127,6 +133,7 @@ After generating, I'll help you:
 5. https://developer.lsdev.biz
 
 **Assistant**: Great! I've captured:
+
 - **Theme Name**: Tour Starter Theme
 - **Theme Slug**: tour-starter
 - **Description**: A modern WordPress block theme for tour operators
@@ -134,12 +141,13 @@ After generating, I'll help you:
 - **Author URI**: https://developer.lsdev.biz
 
 Now let's move to Stage 2. Would you like to use defaults for version and compatibility?
+
 - Version: 1.0.0
 - Min WP: 6.5
 - Tested WP: 6.7
 - Min PHP: 8.0
 
-*Type "yes" to accept defaults, or provide custom values.*
+_Type "yes" to accept defaults, or provide custom values._
 
 ---
 

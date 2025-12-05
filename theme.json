@@ -91,34 +91,34 @@
           "name": "Tiny",
           "fluid": {
             "min": "0.65rem",
-            "max": "0.75rem"
-          }
-        },
-        {
-          "slug": "200",
-          "size": "1rem",
-          "name": "Base",
-          "fluid": {
-            "min": "0.875rem",
-            "max": "1rem"
-          }
-        },
-        {
-          "slug": "300",
-          "size": "1.25rem",
-          "name": "Small",
-          "fluid": {
-            "min": "1rem",
-            "max": "1.25rem"
-          }
-        },
-        {
-          "slug": "400",
-          "size": "1.5rem",
-          "name": "Medium",
-          "fluid": {
-            "min": "1.25rem",
-            "max": "1.5rem"
+          "max": "0.75rem"
+        }
+      },
+      {
+        "slug": "200",
+        "size": "1rem",
+        "name": "Base",
+        "fluid": {
+          "min": "0.875rem",
+          "max": "1rem"
+        }
+      },
+      {
+        "slug": "300",
+        "size": "1.25rem",
+        "name": "Small",
+        "fluid": {
+          "min": "1rem",
+          "max": "1.25rem"
+        }
+      },
+      {
+        "slug": "400",
+        "size": "1.5rem",
+        "name": "Medium",
+        "fluid": {
+          "min": "1.25rem",
+          "max": "1.5rem"
           }
         },
         {

@@ -11,10 +11,35 @@
  * @since {{version}}
  */
 
+/**
+ * PostCSS Configuration
+ *
+ * Processes CSS/Sass files during the build process using @wordpress/postcss-plugins-preset
+ * and @wordpress/postcss-themes for theme global styles support.
+ *
+ * Plugins:
+ * - @wordpress/postcss-plugins-preset: WordPress standard PostCSS plugins
+ * - @wordpress/postcss-themes: Theme-specific CSS variable handling for global styles
+ * - Autoprefixer: Adds vendor prefixes based on .browserslistrc
+ * - cssnano: Minifies CSS for production builds
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-postcss-plugins-preset/
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-postcss-themes/
+ *
+ * @package {{theme_name}}
+ * @since {{version}}
+ */
+
+// WordPress preset includes autoprefixer and other standard plugins
+const wordpressPlugins = require( '@wordpress/postcss-plugins-preset' );
+
 module.exports = {
 	plugins: [
-		// Add vendor prefixes automatically based on .browserslistrc.
-		require( 'autoprefixer' ),
+		// WordPress standard PostCSS plugins (autoprefixer, etc.)
+		wordpressPlugins,
+
+		// WordPress themes plugin for global styles CSS variable support
+		require( '@wordpress/postcss-themes' ),
 
 		// Minify CSS for production builds only.
 		// wp-scripts automatically applies this based on NODE_ENV.

@@ -1,29 +1,42 @@
 /**
  * Main theme JavaScript
+ *
+ * Uses WordPress packages:
+ * - @wordpress/escape-html: For safe HTML escaping
+ * - @wordpress/a11y: For accessibility announcements
  */
+
+import { escapeHTML } from '@wordpress/escape-html';
+import { announce } from '@wordpress/a11y';
 
 // Skip link functionality
 document.addEventListener( 'DOMContentLoaded', function() {
-	// Add skip link
+	// Add skip link with escaped content
 	const skipLink = document.createElement( 'a' );
 	skipLink.href = '#main';
 	skipLink.className = 'skip-link screen-reader-text';
-	skipLink.textContent = '{{skip_link_text}}';
+	skipLink.textContent = escapeHTML( '{{skip_link_text}}' );
 	document.body.insertBefore( skipLink, document.body.firstChild );
 
-	// Smooth scroll for anchor links
+	// Announce skip link to screen readers
+	announce( 'Skip link added' );
+
+	// Smooth scroll for anchor links with accessibility announcement
 	const anchorLinks = document.querySelectorAll( 'a[href^="#"]' );
 	anchorLinks.forEach( link => {
 		link.addEventListener( 'click', function( e ) {
 			const href = this.getAttribute( 'href' );
 			const target = document.querySelector( href );
-			
+
 			if ( target ) {
 				e.preventDefault();
 				target.scrollIntoView( {
 					behavior: 'smooth',
 					block: 'start'
 				} );
+				// Announce to screen readers
+				const targetText = target.textContent?.substring( 0, 50 ) || 'Section';
+				announce( `Navigated to ${ escapeHTML( targetText ) }` );
 			}
 		} );
 	} );
@@ -43,7 +56,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 		const focusableElements = modal.querySelectorAll(
 			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
 		);
-		
+
 		if ( focusableElements.length > 0 ) {
 			focusableElements[0].focus();
 		}
